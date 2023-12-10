@@ -18,7 +18,7 @@ getgenv().Setting = {
     },
     ["Chat"] = {
         ["Enable"] = false,
-        ["Content"] = ""
+        ["Content"] = "Night Hub Best Free Script"
     },
     ["Misc"] = {
         ["Silent Mode"] = true,
@@ -26,7 +26,7 @@ getgenv().Setting = {
         ["Hiding Health"] = {3000, 4000},
         ["V4"] = true,
         ["LockCamera"] = true,
-        ["FPSBoost"] = false,
+        ["FPSBoost"] = true,
         ["WhiteScreen"] = false,
         ["BypassTP"] = true,
         ["TweenSpeed"] = 350,
@@ -44,14 +44,14 @@ getgenv().Setting = {
             }
         },
         ["Blox Fruit"] = {
-            ["Enable"] = false,
+            ["Enable"] = true,
             ["Delay"] = 6,
             ["Skills"] = {
                 ["Z"] = {["Enable"] = true, ["HoldTime"] = 0},
-                ["X"] = {["Enable"] = false, ["HoldTime"] = 0},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0},
                 ["C"] = {["Enable"] = false, ["HoldTime"] = 0},
                 ["V"] = {["Enable"] = false, ["HoldTime"] = 0},
-                ["F"] = {["Enable"] = false, ["HoldTime"] = 0}
+                ["F"] = {["Enable"] = true, ["HoldTime"] = 0}
             }
         },
         ["Sword"] = {
