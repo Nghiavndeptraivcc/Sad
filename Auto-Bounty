@@ -369,8 +369,8 @@ function deploy()
 end
 deploy()
 
-if not celes["Client_Eslaped"] then
-    celes = {
+if not Night["Client_Eslaped"] then
+    Night = {
         Client_Eslaped = 0,
         Total_Earned = 0
     }
