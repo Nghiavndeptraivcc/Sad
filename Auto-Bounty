@@ -184,6 +184,9 @@ Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame.BorderSizePixel = 0
 Frame.Position = UDim2.new(0.187845305, 0, 0.261044174, 0)
 Frame.Size = UDim2.new(0, 480, 0, 258)
+Frame.Draggable = true
+Frame.Active = true
+Frame.Visible = true
 
 UICorner.Parent = Frame
 
@@ -778,7 +781,6 @@ function find_target()
     if not uwu then
         return HopServer()
     end
-    Notify("Night Hub Target", tostring(uwu))
     -- if not uwu then return end
     -- noti("Auto Bounty", uwu.Name)
     niga[uwu.Name] = true
@@ -958,13 +960,13 @@ function checktarget()
     end
 
     if uwu.Character.Humanoid.Health <= 0 then
-        Notify("Night Hub System", "Players Died")
+        Notify("Players Died", 5)
 
         return find_target()
     end
 
     if checkNotify("ayer") then
-        Notify("Night Hub System", "Players Die or Not Enabled PVP")
+        Notify("Players Die or Not Enabled PVP", 5)
         return find_target()
     end
 
@@ -972,7 +974,7 @@ function checktarget()
         lp.PlayerGui.Main.SafeZone.Visible and
             uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head", 9).Position) < 10
      then
-        Notify("Night Hub System", "Players In SafeZone!")
+        Notify("Players In SafeZone!", 5)
         return find_target()
     end
     if os.time() - fromtime > 250 then
@@ -980,7 +982,7 @@ function checktarget()
     end
     if uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head").Position) < 100 then
         if os.time() - fromtime > 15 and not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
-            Notify("Night Hub System", "Not Incombat")
+            Notify("Not Incombat", 5)
             return find_target()
         end
     else
