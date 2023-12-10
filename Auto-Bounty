@@ -317,6 +317,15 @@ Next_2.Text = "Hop Servers"
 Next_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Next_2.TextSize = 18.000
 
+Next.Activated:Connect(find_target)
+Next_2.Activated:Connect(
+    function()
+        while wait() and uwu and uwu.Character do
+            find_target()
+        end
+    end
+)
+
 -----// Tween Source \\-----------------------------
 if lp.PlayerGui.Main:FindFirstChild("ChooseTeam") then
     for i, v in pairs(
