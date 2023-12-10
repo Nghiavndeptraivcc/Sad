@@ -1,3 +1,4 @@
+--// Configs \\-----
 getgenv().Setting = {
     ["Hunt"] = {
         ["Team"] = "Pirates"
@@ -131,206 +132,172 @@ local hmt = hookmetamethod
 local cs = newcclosure
 
 HttpService = game:GetService("HttpService")
---local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/memaybeohub/Function-Scripts/main/OrionLib.lua"))()
 
-function getDirection(Origin, Position)
-    return (Position - Origin).Unit * 1000
-end
+-- Instances:
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+local ImageLabel = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local UIStroke_2 = Instance.new("UIStroke")
+local TextLabel = Instance.new("TextLabel")
+local UICorner_3 = Instance.new("UICorner")
+local Frame_2 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local Frame_3 = Instance.new("Frame")
+local UICorner_5 = Instance.new("UICorner")
+local ClientTime = Instance.new("TextLabel")
+local Total = Instance.new("TextLabel")
+local Earned = Instance.new("TextLabel")
+local Target = Instance.new("TextLabel")
+local Frame_4 = Instance.new("Frame")
+local UICorner_6 = Instance.new("UICorner")
+local Next = Instance.new("TextButton")
+local Next_2 = Instance.new("TextButton")
 
-if game:GetService("CoreGui"):FindFirstChild("NightScreen") then
-    game.CoreGui.NightScreen:Destroy()
-end
-a000000009 = os.time()
+-- Properties:
 
-NightScreen = Instance.new("ScreenGui")
-DropShadowHolder = Instance.new("Frame")
-DropShadow = Instance.new("ImageLabel")
-UIGradient = Instance.new("UIGradient")
-MainFrame = Instance.new("Frame")
-UICorner = Instance.new("UICorner")
-Bounty = Instance.new("TextLabel")
-Night = Instance.new("TextLabel")
-TotalEarn = Instance.new("TextLabel")
-Elapsed = Instance.new("TextLabel")
-ServerEarn = Instance.new("TextLabel")
-Target = Instance.new("TextLabel")
-UIGradient1 = Instance.new("UIGradient")
-Skip = Instance.new("TextButton")
-Hop = Instance.new("TextButton")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-NightScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-NightScreen.Name = "NightScreen"
-NightScreen.Parent = game:GetService("CoreGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.187845305, 0, 0.261044174, 0)
+Frame.Size = UDim2.new(0, 480, 0, 258)
 
-DropShadowHolder.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadowHolder.BackgroundTransparency = 1
-DropShadowHolder.BorderSizePixel = 0
-DropShadowHolder.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadowHolder.Size = UDim2.new(0, 350, 0, 245)
-DropShadowHolder.ZIndex = 0
-DropShadowHolder.Name = "DropShadowHolder"
-DropShadowHolder.Parent = NightScreen
+UICorner.Parent = Frame
 
-DropShadow.Image = "rbxassetid://6015897843"
-DropShadow.ImageTransparency = 0.5
-DropShadow.ScaleType = Enum.ScaleType.Slice
-DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
-DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
-DropShadow.BackgroundTransparency = 1
-DropShadow.BorderSizePixel = 0
-DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-DropShadow.Size = UDim2.new(1, 47, 1, 47)
-DropShadow.ZIndex = 0
-DropShadow.Name = "DropShadow"
-DropShadow.Parent = DropShadowHolder
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.Parent = Frame
 
-UIGradient.Color =
-    ColorSequence.new {
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(85.0000025331974, 93.00000205636024, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(70.00000342726707, 246.0000005364418, 255))
-}
-UIGradient.Parent = DropShadow
+ImageLabel.Parent = Frame
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageLabel.BorderSizePixel = 0
+ImageLabel.Position = UDim2.new(0.0354166664, 0, 0.306201547, 0)
+ImageLabel.Size = UDim2.new(0, 100, 0, 100)
+ImageLabel.Image = "http://www.roblox.com/asset/?id=15033356012"
 
-MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-MainFrame.BackgroundColor3 = Color3.fromRGB(45.00000111758709, 45.00000111758709, 45.00000111758709)
-MainFrame.BackgroundTransparency = 0.6000000238418579
-MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-MainFrame.BorderSizePixel = 0
-MainFrame.Position = UDim2.new(0.5, 0, 0.497461915, 0)
-MainFrame.Size = UDim2.new(0, 350, 0, 245)
-MainFrame.Name = "MainFrame"
-MainFrame.Parent = DropShadow
+UICorner_2.Parent = ImageLabel
 
-UICorner.CornerRadius = UDim.new(0, 2)
-UICorner.Parent = MainFrame
+UIStroke_2.Color = Color3.fromRGB(255, 255, 255)
+UIStroke_2.Parent = ImageLabel
 
-Bounty.Font = Enum.Font.GothamBold
-Bounty.Text = "Bounty"
-Bounty.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-Bounty.TextSize = 20
-Bounty.TextXAlignment = Enum.TextXAlignment.Left
-Bounty.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Bounty.BackgroundTransparency = 1
-Bounty.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Bounty.BorderSizePixel = 0
-Bounty.Position = UDim2.new(0.517142832, 0, 0.0775510222, 0)
-Bounty.Size = UDim2.new(0, 118, 0, 37)
-Bounty.Name = "Bounty"
-Bounty.Parent = MainFrame
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 480, 0, 50)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Night Hub | Auto Bounty"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 18.000
 
-Night.Font = Enum.Font.GothamBold
-Night.Text = "Night Hub"
-Night.TextColor3 = Color3.fromRGB(83.00000265240669, 160.00000566244125, 255)
-Night.TextSize = 20
-Night.TextXAlignment = Enum.TextXAlignment.Right
-Night.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Night.BackgroundTransparency = 1
-Night.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Night.BorderSizePixel = 0
-Night.Position = UDim2.new(0.177142859, 0, 0.0775510222, 0)
-Night.Size = UDim2.new(0, 105, 0, 37)
-Night.Name = "Night Hub"
-Night.Parent = MainFrame
+UICorner_3.Parent = TextLabel
 
-TotalEarn.Font = Enum.Font.GothamBold
-TotalEarn.Text = "Total Earned: "
-TotalEarn.TextColor3 = Color3.fromRGB(255, 255, 11.000000294297934)
-TotalEarn.TextSize = 18
-TotalEarn.AnchorPoint = Vector2.new(0.5, 0)
-TotalEarn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TotalEarn.BackgroundTransparency = 1
-TotalEarn.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TotalEarn.BorderSizePixel = 0
-TotalEarn.Position = UDim2.new(0.5, 0, 0.387530655, 0)
-TotalEarn.Size = UDim2.new(0, 280, 0, 23)
-TotalEarn.Name = "TotalEarn"
-TotalEarn.Parent = MainFrame
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Position = UDim2.new(-3.17891455e-08, 0, 0.193798453, 0)
+Frame_2.Size = UDim2.new(0, 480, 0, 2)
 
-Elapsed.Font = Enum.Font.GothamBold
-Elapsed.Text = "Time Elapsed: "
-Elapsed.TextColor3 = Color3.fromRGB(255, 255, 11.000000294297934)
-Elapsed.TextSize = 18
-Elapsed.AnchorPoint = Vector2.new(0.5, 0)
-Elapsed.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Elapsed.BackgroundTransparency = 1
-Elapsed.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Elapsed.BorderSizePixel = 0
-Elapsed.Position = UDim2.new(0.5, 0, 0.269163281, 0)
-Elapsed.Size = UDim2.new(0, 280, 0, 20)
-Elapsed.Name = "Elapsed"
-Elapsed.Parent = MainFrame
+UICorner_4.Parent = Frame_2
 
-ServerEarn.Font = Enum.Font.GothamBold
-ServerEarn.Text = "Server Earned: 0"
-ServerEarn.TextColor3 = Color3.fromRGB(255, 255, 11.000000294297934)
-ServerEarn.TextSize = 18
-ServerEarn.AnchorPoint = Vector2.new(0.5, 0)
-ServerEarn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ServerEarn.BackgroundTransparency = 1
-ServerEarn.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ServerEarn.BorderSizePixel = 0
-ServerEarn.Position = UDim2.new(0.5, 0, 0.534469426, 0)
-ServerEarn.Size = UDim2.new(0, 280, 0, 19)
-ServerEarn.Name = "ServerEarn"
-ServerEarn.Parent = MainFrame
+Frame_3.Parent = Frame
+Frame_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_3.BorderSizePixel = 0
+Frame_3.Position = UDim2.new(0.310416669, 0, 0.201550394, 0)
+Frame_3.Size = UDim2.new(0, 331, 0, 206)
 
-Target.Font = Enum.Font.GothamBold
-Target.Text = "Target:"
-Target.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-Target.TextSize = 18
-Target.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Target.BackgroundTransparency = 1
+UICorner_5.Parent = Frame_3
+
+ClientTime.Name = "Client Time"
+ClientTime.Parent = Frame_3
+ClientTime.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ClientTime.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ClientTime.BorderSizePixel = 0
+ClientTime.Position = UDim2.new(0.0513595156, 0, 0.131067961, 0)
+ClientTime.Size = UDim2.new(0, 200, 0, 30)
+ClientTime.Font = Enum.Font.SourceSansBold
+ClientTime.Text = "Client Time: 0H 0M 0S"
+ClientTime.TextColor3 = Color3.fromRGB(255, 255, 255)
+ClientTime.TextSize = 14.000
+
+Total.Name = "Total"
+Total.Parent = Frame_3
+Total.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Total.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Total.BorderSizePixel = 0
+Total.Position = UDim2.new(0.0513595156, 0, 0.300970882, 0)
+Total.Size = UDim2.new(0, 200, 0, 30)
+Total.Font = Enum.Font.SourceSansBold
+Total.Text = "Total Earned : 0"
+Total.TextColor3 = Color3.fromRGB(255, 255, 255)
+Total.TextSize = 14.000
+
+Earned.Name = "Earned"
+Earned.Parent = Frame_3
+Earned.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Earned.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Earned.BorderSizePixel = 0
+Earned.Position = UDim2.new(0.0513595156, 0, 0.470873773, 0)
+Earned.Size = UDim2.new(0, 200, 0, 30)
+Earned.Font = Enum.Font.SourceSansBold
+Earned.Text = " Earned : 0"
+Earned.TextColor3 = Color3.fromRGB(255, 255, 255)
+Earned.TextSize = 14.000
+
+Target.Name = "Target"
+Target.Parent = Frame_3
+Target.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Target.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Target.BorderSizePixel = 0
-Target.Position = UDim2.new(0.340000004, 0, 0.673469365, 0)
-Target.Size = UDim2.new(0, 112, 0, 15)
-Target.Name = "Target"
-Target.Parent = MainFrame
+Target.Position = UDim2.new(0.0513595156, 0, 0.616504848, 0)
+Target.Size = UDim2.new(0, 200, 0, 30)
+Target.Font = Enum.Font.SourceSansBold
+Target.Text = "Target Name : LMN GAMING"
+Target.TextColor3 = Color3.fromRGB(255, 255, 255)
+Target.TextSize = 14.000
 
-UIGradient1.Color =
-    ColorSequence.new {
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(85.0000025331974, 93.00000205636024, 255)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(74.0000031888485, 201.00000321865082, 255))
-}
-UIGradient1.Parent = MainFrame
+Frame_4.Parent = Frame
+Frame_4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_4.BorderSizePixel = 0
+Frame_4.Position = UDim2.new(0, 0, 0.810077548, 0)
+Frame_4.Size = UDim2.new(0, 480, 0, 49)
 
-Skip.Font = Enum.Font.GothamBold
-Skip.Text = "Skip Player"
-Skip.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-Skip.TextSize = 18
-Skip.TextXAlignment = Enum.TextXAlignment.Right
-Skip.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Skip.BackgroundTransparency = 0.9900000095367432
-Skip.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Skip.BorderSizePixel = 0
-Skip.Position = UDim2.new(0.0457142852, 0, 0.759183645, 0)
-Skip.Size = UDim2.new(0, 144, 0, 43)
-Skip.Name = "Skip"
-Skip.Parent = MainFrame
+UICorner_6.Parent = Frame_4
 
-Hop.Font = Enum.Font.GothamBold
-Hop.Text = "Hop Server"
-Hop.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-Hop.TextSize = 18
-Hop.TextXAlignment = Enum.TextXAlignment.Left
-Hop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Hop.BackgroundTransparency = 0.9900000095367432
-Hop.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Hop.BorderSizePixel = 0
-Hop.Position = UDim2.new(0.54285717, 0, 0.759183645, 0)
-Hop.Size = UDim2.new(0, 144, 0, 43)
-Hop.Name = "Hop"
-Hop.Parent = MainFrame
+Next.Name = "Next"
+Next.Parent = Frame_4
+Next.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Next.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Next.BorderSizePixel = 0
+Next.Position = UDim2.new(0.0500000007, 0, 0, 0)
+Next.Size = UDim2.new(0, 142, 0, 41)
+Next.Font = Enum.Font.SourceSansBold
+Next.Text = "Next Players"
+Next.TextColor3 = Color3.fromRGB(255, 255, 255)
+Next.TextSize = 18.000
 
-Skip.Activated:Connect(find_target)
-Hop.Activated:Connect(
-    function()
-        while wait() and uwu and uwu.Character do
-            find_target()
-        end
-    end
-)
+Next_2.Name = "Next"
+Next_2.Parent = Frame_4
+Next_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Next_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Next_2.BorderSizePixel = 0
+Next_2.Position = UDim2.new(0.677083313, 0, 0, 0)
+Next_2.Size = UDim2.new(0, 142, 0, 41)
+Next_2.Font = Enum.Font.SourceSansBold
+Next_2.Text = "Hop Servers"
+Next_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Next_2.TextSize = 18.000
 
+-----// Tween Source \\-----------------------------
 if lp.PlayerGui.Main:FindFirstChild("ChooseTeam") then
     for i, v in pairs(
         getconnections(
@@ -397,14 +364,19 @@ function save()
     Night.Total_Earned = a999 + tonumber(lp.leaderstats["Bounty/Honor"].Value - oldbty2)
     Night.Client_Eslaped = Night1.Client_Eslaped + (os.time() - a000000009)
 
-    TotalEarn.Text = [[Total Earned: ]] .. Night.Total_Earned
-    Elapsed.Text = [[Client Time Eslaped: ]] .. disp_time(Night.Client_Eslaped)
+    Total.Text = [[Total Earned: ]] .. Night.Total_Earned
+    ClientTime.Text = [[Client Time Eslaped: ]] .. disp_time(Night.Client_Eslaped)
     local a0 = HttpService:JSONEncode(Night)
     writefile(pathfile2, a0)
 end
 
-function noti(a, b, c)
-    print("[Night Hub Notify]", a, b)
+function Notify(h,i)
+    OrionLib:MakeNotification({
+        Name = "Night Hub",
+        Content = h,
+        Image = "rbxassetid://15541504459",
+        Time = i
+    })
 end
 
 local bM = {}
@@ -901,7 +873,7 @@ function calculate_earn()
     start_bounty = lp.leaderstats["Bounty/Honor"].Value
     if earned > 0 then
         LocalEarn = LocalEarn + earned
-        ServerEarn.Text = "Server Earned: " .. LocalEarn
+        Earned.Text = "Earned : " .. LocalEarn
         if Setting.Webhook.Enable then
             PostWebhook2(
                 {
@@ -917,7 +889,7 @@ function calculate_earn()
                             fields = {
                                 {
                                     id = 814454215,
-                                    name = "Target",
+                                    name = "Target Name",
                                     value = string.format("``` %s ```", tostring(uwu)),
                                     inline = false
                                 },
@@ -947,7 +919,7 @@ function calculate_earn()
                                 }
                             },
                             author = {
-                                name = "Night Hub Bounty"
+                                name = "Night Hub Auto Bounty"
                             }
                         }
                     }
@@ -969,13 +941,13 @@ function checktarget()
     end
 
     if uwu.Character.Humanoid.Health <= 0 then
-        noti("Auto Bounty", "Player: " .. (uwu.Name or "?") .. "/ Earned: " .. (calculate_earn() or "nil"))
+        Notify("Night Hub System", "Players Died")
 
         return find_target()
     end
 
     if checkNotify("ayer") then
-        noti("Auto Bounty", "Skip Player Due target Is Not Enable PvP")
+        Notify("Night Hub System", "Players Die or Not Enabled PVP")
         return find_target()
     end
 
@@ -983,7 +955,7 @@ function checktarget()
         lp.PlayerGui.Main.SafeZone.Visible and
             uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head", 9).Position) < 10
      then
-        noti("Auto Bounty", "SafeZone Detected [Gui Detect]")
+        Notify("Night Hub System", "Players In SafeZone!")
         return find_target()
     end
     if os.time() - fromtime > 250 then
@@ -991,7 +963,7 @@ function checktarget()
     end
     if uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head").Position) < 100 then
         if os.time() - fromtime > 15 and not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
-            noti("Auto Bounty", "Not Incombat")
+            Notify("Night Hub System", "Not Incombat")
             return find_target()
         end
     else
