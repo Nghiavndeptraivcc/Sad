@@ -125,7 +125,6 @@ spawn(function()
     end)
 end)
 
-
 local plrs = game.Players
 local lp = plrs.LocalPlayer
 
@@ -140,6 +139,16 @@ local hmt = hookmetamethod
 local cs = newcclosure
 
 HttpService = game:GetService("HttpService")
+--local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/memaybeohub/Function-Scripts/main/OrionLib.lua"))()
+
+function getDirection(Origin, Position)
+    return (Position - Origin).Unit * 1000
+end
+
+if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
+    game.CoreGui.ScreenGui:Destroy()
+end
+a000000009 = os.time()
 
 -- Instances:
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
