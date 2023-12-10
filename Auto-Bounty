@@ -326,6 +326,18 @@ Next_2.Activated:Connect(
     end
 )
 
+-----// Enabled PvP \\------------------------------
+
+spawn(function()
+    pcall(function()
+    while wait(.1) do
+    if game:GetService("Players").LocalPlayer.PlayerGui.Main.PvpDisabled.Visible == true then
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EnablePvp")
+    end
+    end
+    end)
+    end)
+
 -----// Tween Source \\-----------------------------
 if lp.PlayerGui.Main:FindFirstChild("ChooseTeam") then
     for i, v in pairs(
