@@ -118,6 +118,14 @@ if Setting.Misc.FPSBoost then
     end
 end
 
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        game.Players.LocalPlayer.Character.Stun.Value = 0
+        game.Players.LocalPlayer.Character.Busy.Value = false 
+    end)
+end)
+
+
 local plrs = game.Players
 local lp = plrs.LocalPlayer
 
