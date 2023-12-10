@@ -778,12 +778,12 @@ function find_target()
     if not uwu then
         return HopServer()
     end
-    noti("Auto Bounty", tostring(uwu))
+    Notify("Night Hub Target", tostring(uwu))
     -- if not uwu then return end
     -- noti("Auto Bounty", uwu.Name)
     niga[uwu.Name] = true
     fromtime = os.time()
-    Target.Text = "Target: " .. tostring(uwu)
+    Target.Text = "Target : " .. tostring(uwu)
 
     if Setting.Chat.Enable then
         porn = split(tostring(Setting.Chat.Content), ",")
