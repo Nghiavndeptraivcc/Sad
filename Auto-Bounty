@@ -1316,13 +1316,6 @@ old =
         return old(self, unpack({...}))
     end
 )
-
-game:GetService"RunService".RenderStepped:Connect(function () 
-  
-    for _, anim in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
-            anim:Stop()
-    end
-  end)
 while task.wait() do
     if m10 then
         break
