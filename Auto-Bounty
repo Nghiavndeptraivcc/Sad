@@ -72,7 +72,7 @@ getgenv().Setting = {
         }
     }
 }
---// Configs \\-----
+
 
 game:GetService("RunService"):Set3dRenderingEnabled(not Setting.Misc.WhiteScreen)
 
@@ -511,12 +511,63 @@ function HopServer(bO)
                 if v.Visible then
                     if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
                         HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
+                        HopServer()
                     end
                 end
                 v:GetPropertyChangedSignal("Visible"):Connect(
                     function()
                         if v.Visible then
                             if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
+                                HopServer()
                                 HopServer()
                             end
                         end
