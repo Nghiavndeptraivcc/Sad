@@ -1358,7 +1358,7 @@ while task.wait() do
             safe_cp(uwu)
 
             to(
-                (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(0, 3), math.random(-6, 6))) +
+                (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(0, 12), math.random(-6, 6))) +
                     shitpredict(uwu)
             )
 
