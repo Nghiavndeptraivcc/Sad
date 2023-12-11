@@ -8,7 +8,7 @@ getgenv().Setting = {
         ["Url"] = "https://discord.com/api/webhooks/1183578120268300348/EXHBMFGr-B0Ua-c3FkFR_CGaOcNw-wVBeJh8wE7eiZ6t8RGVIy9JTf8WrIawYpk9FmbT"
     },
     ["Skip"] = {
-        ["V4"] = false,
+        ["V4"] = true,
         ["Fruit"] = {
             "Portal-Portal",
             "Mammoth-Mammoth",
@@ -72,6 +72,7 @@ getgenv().Setting = {
         }
     }
 }
+--// Configs \\-----
 
 game:GetService("RunService"):Set3dRenderingEnabled(not Setting.Misc.WhiteScreen)
 
@@ -1356,7 +1357,7 @@ while task.wait() do
             safe_cp(uwu)
 
             to(
-                (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(0, 12), math.random(-6, 6))) +
+                (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(12, 18), math.random(-6, 6))) +
                     shitpredict(uwu)
             )
             workspace.CurrentCamera:WorldToScreenPoint(uwu.Character.Head.Position)
@@ -1406,4 +1407,22 @@ spawn(function()
         game.Players.LocalPlayer.Character.Stun.Value = 0
         game.Players.LocalPlayer.Character.Busy.Value = false 
     end)
+end)
+
+_G.AutoObservation = true
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoObservation then
+                repeat task.wait()
+                    if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
+                        game:GetService('VirtualUser'):CaptureController()
+                        game:GetService('VirtualUser'):SetKeyDown('0x65')
+                        wait(2)
+                        game:GetService('VirtualUser'):SetKeyUp('0x65')
+                    end
+                until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") or not _G.AutoObservation
+            end
+        end)
+    end
 end)
