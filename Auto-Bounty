@@ -457,7 +457,7 @@ function HopServer(bO)
         task.wait()
     until tick() - ticklon >= 2
     local function Hop()
-        Notify("Hop Servers", 7)
+        Notify("Hop Servers", 15)
         for r = 1, 100 do
             ChooseRegion = Setting.Misc.HopRegion
             if ChooseRegion == nil or ChooseRegion == "" then
@@ -473,7 +473,7 @@ function HopServer(bO)
                         bM[k] = {Time = tick()}
                         SaveSettings2()
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
-                            noti("Wait For End InCombat", 15)
+                            Notify("Wait For End InCombat", 15)
                             repeat
                                 wait()
                                 to(CFrame.new(0, math.random(9999, 99999), 0))
@@ -922,7 +922,7 @@ function calculate_earn()
                             fields = {
                                 {
                                     id = 814454215,
-                                    name = "Target Name",
+                                    name = "Target",
                                     value = string.format("``` %s ```", tostring(uwu)),
                                     inline = false
                                 },
