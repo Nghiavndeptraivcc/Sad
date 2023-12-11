@@ -1,16 +1,12 @@
-
+Plr = game.Players.LocalPlayer
 local Pid = game.PlaceId
 if Pid == 2753915549 then
     _G.BloxFruit_ALX_B = true
-    _G.WebhookGG_ALX("Game","BloxFruits : Aimbot Skill")
 elseif Pid == 4442272183 then
     _G.BloxFruit_ALX_B = true
-    _G.WebhookGG_ALX("Game","BloxFruits : Aimbot Skill")
 elseif Pid == 7449423635 then
     _G.BloxFruit_ALX_B = true
-    _G.WebhookGG_ALX("Game","BloxFruits : Aimbot Skill")
 else
-    _G.WebhookGG_ALX("Game","Not Support !")
     Plr:Kick("Game Not Support !")
 end
 local UIThemeColorSave = Color3.fromRGB(0, 255, 145)
