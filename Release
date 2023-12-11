@@ -2107,7 +2107,7 @@ spawn(function()
 end)
 
 local AttackList = {"Super Fast", "Fast", "Normal", "Slow"}
-GG:AddDropdown({
+G:AddDropdown({
 	Name = "FastAttack Mode",
 	Default = "Normal",
     Flag = "FastAttack Mode",
