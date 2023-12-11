@@ -118,13 +118,6 @@ if Setting.Misc.FPSBoost then
     end
 end
 
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        game.Players.LocalPlayer.Character.Stun.Value = 0
-        game.Players.LocalPlayer.Character.Busy.Value = false 
-    end)
-end)
-
 local plrs = game.Players
 local lp = plrs.LocalPlayer
 
@@ -1361,6 +1354,7 @@ while task.wait() do
                 (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(0, 12), math.random(-6, 6))) +
                     shitpredict(uwu)
             )
+            workspace.CurrentCamera:WorldToScreenPoint(uwu.Character.Head.Position)
 
             am2(uwu).Size = Vector3.new(100, 100, 100)
 
@@ -1401,3 +1395,10 @@ while task.wait() do
         end
     end
 end
+
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        game.Players.LocalPlayer.Character.Stun.Value = 0
+        game.Players.LocalPlayer.Character.Busy.Value = false 
+    end)
+end)
