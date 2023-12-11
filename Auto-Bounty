@@ -496,7 +496,6 @@ function HopServer(bO)
                 if v.Visible then
                     if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
                         HopServer()
-                        v.Visible = false
                     end
                 end
                 v:GetPropertyChangedSignal("Visible"):Connect(
@@ -504,7 +503,6 @@ function HopServer(bO)
                         if v.Visible then
                             if v.TitleFrame.ErrorTitle.Text == "Teleport Failed" then
                                 HopServer()
-                                v.Visible = false
                             end
                         end
                     end
