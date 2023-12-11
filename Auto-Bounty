@@ -8,7 +8,7 @@ getgenv().Setting = {
         ["Url"] = "https://discord.com/api/webhooks/1183578120268300348/EXHBMFGr-B0Ua-c3FkFR_CGaOcNw-wVBeJh8wE7eiZ6t8RGVIy9JTf8WrIawYpk9FmbT"
     },
     ["Skip"] = {
-        ["V4"] = true,
+        ["V4"] = false,
         ["Fruit"] = {
             "Portal-Portal",
             "Mammoth-Mammoth",
@@ -1459,22 +1459,4 @@ spawn(function()
         game.Players.LocalPlayer.Character.Stun.Value = 0
         game.Players.LocalPlayer.Character.Busy.Value = false 
     end)
-end)
-
-_G.AutoObservation = true
-spawn(function()
-    while wait() do
-        pcall(function()
-            if _G.AutoObservation then
-                repeat task.wait()
-                    if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
-                        game:GetService('VirtualUser'):CaptureController()
-                        game:GetService('VirtualUser'):SetKeyDown('0x65')
-                        wait(2)
-                        game:GetService('VirtualUser'):SetKeyUp('0x65')
-                    end
-                until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") or not _G.AutoObservation
-            end
-        end)
-    end
 end)
