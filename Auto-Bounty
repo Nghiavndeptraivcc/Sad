@@ -8,7 +8,7 @@ getgenv().Setting = {
         ["Url"] = "https://discord.com/api/webhooks/1183578120268300348/EXHBMFGr-B0Ua-c3FkFR_CGaOcNw-wVBeJh8wE7eiZ6t8RGVIy9JTf8WrIawYpk9FmbT"
     },
     ["Skip"] = {
-        ["V4"] = false,
+        ["V4"] = true,
         ["Fruit"] = {
             "Portal-Portal",
             "Mammoth-Mammoth",
@@ -1411,7 +1411,8 @@ while task.wait() do
                 (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(12, 18), math.random(-6, 6))) +
                     shitpredict(uwu)
             )
-            workspace.CurrentCamera:WorldToScreenPoint(uwu.Character.Head.Position)
+            workspace.CurrentCamera.CFrame =CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position
+		)
 
             am2(uwu).Size = Vector3.new(100, 100, 100)
 
