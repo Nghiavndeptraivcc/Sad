@@ -144,6 +144,7 @@ end
 a000000009 = os.time()
 
 -- Instances:
+local BountyA = game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
@@ -412,6 +413,19 @@ function Notify(h,i)
         Time = i
     })
 end
+
+spawn(
+    function()
+        pcall(
+            function()
+                while wait(0.1) do
+                    local BountyB = game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
+                    Earned.Text = "Earned : " .. BountyB - BountyA
+                end
+            end
+        )
+    end
+)
 
 local bM = {}
 
