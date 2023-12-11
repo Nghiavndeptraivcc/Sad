@@ -8,7 +8,7 @@ getgenv().Setting = {
         ["Url"] = "https://discord.com/api/webhooks/1183578120268300348/EXHBMFGr-B0Ua-c3FkFR_CGaOcNw-wVBeJh8wE7eiZ6t8RGVIy9JTf8WrIawYpk9FmbT"
     },
     ["Skip"] = {
-        ["V4"] = true,
+        ["V4"] = false,
         ["Fruit"] = {
             "Portal-Portal",
             "Mammoth-Mammoth",
