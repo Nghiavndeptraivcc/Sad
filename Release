@@ -2344,10 +2344,10 @@ spawn(function()
     while wait() do
         if _G.AutoFarmBone then
             pcall(function()
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") then
-                        if v.Name == "Reborn Skeleton" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" or v.Name == "Living Zombie" then
-                            if v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Parent then
+                if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
+                           if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
@@ -2369,13 +2369,13 @@ spawn(function()
                     topos(PosBone)
                     for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
                         if v.Name == "Reborn Skeleton" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Living Zombie" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Demonic Soul" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Posessed Mummy" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         end
                     end
                 end
