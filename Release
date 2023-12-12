@@ -2131,8 +2131,8 @@ G:AddToggle({
     Flag = "Auto Farm",
     Save = true,
 	Callback = function(Value)
-		_G.AutoBone = Value
-        StopTween(_G.AutoBone)
+		_G.AutoFarmBone = Value
+        StopTween(_G.AutoFarmBone)
 	end    
 })
 
