@@ -1054,7 +1054,7 @@ function checktarget()
         Notify("Your Died", 5)
         return find_target()
     end
-    
+
     if
         lp.PlayerGui.Main.SafeZone.Visible and
             uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head", 9).Position) < 10
@@ -1454,7 +1454,7 @@ while task.wait() do
             safe_cp(uwu)
 
             to(
-                (am2(uwu).CFrame * CFrame.new(math.random(-6, 6), math.random(12, 18), math.random(-6, 6))) +
+                (am2(uwu).CFrame * CFrame.new(math.random(0, 0), math.random(1, 1), math.random(0, 0))) +
                     shitpredict(uwu)
             )
 
