@@ -1414,8 +1414,8 @@ old =
                 uwu.Character and
                 uwu.Character:FindFirstChild("Head")
          then
-            local a2 = workspace.CurrentCamera.CFrame =CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
-            return a2
+            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
+            return
         end
         return old(self, unpack({...}))
     end
