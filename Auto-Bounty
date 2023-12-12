@@ -1414,7 +1414,7 @@ while task.wait() do
     if uwu then
         if uwu.Character then
             safe_cp(uwu)
-            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
+            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.Position)
 
             to(
                 (am2(uwu).CFrame * CFrame.new(math.random(-1, 1), math.random(23, 23), math.random(-1, 1))) +
