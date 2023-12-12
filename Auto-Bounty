@@ -1029,6 +1029,7 @@ function calculate_earn()
     return tostring(earned)
 end
 
+local MyHealth = game.Players.LocalPlayer.Characters.Humanoid.Health
 function checktarget()
     safe_cp(lp)
     if not uwu then
@@ -1044,11 +1045,16 @@ function checktarget()
         return find_target()
     end
 
-    if checkNotify("ayer") then
+    if checkNotify("Players") or checkNotify("players") or checkNotify("player") then
         Notify("Players Die or Not Enabled PVP", 5)
         return find_target()
     end
 
+    if MyHealth <= 0 then
+        Notify("Your Died", 5)
+        return find_target()
+    end
+    
     if
         lp.PlayerGui.Main.SafeZone.Visible and
             uwu:DistanceFromCharacter(lp.Character:WaitForChild("Head", 9).Position) < 10
