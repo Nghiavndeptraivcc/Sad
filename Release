@@ -2344,15 +2344,6 @@ spawn(function()
     while wait() do
         if _G.AutoFarmBone then
             pcall(function()
-                if BypassTP then
-                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - PosBone.Position).Magnitude > 2000 then
-                        BTP(PosBone)
-                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - PosBone.Position).Magnitude < 2000 then
-                        topos(PosBone)
-                    end
-                else
-                    topos(PosBone)
-                    end
                 if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
@@ -2375,7 +2366,15 @@ spawn(function()
                     end
                 else
                     StartMagnetBoneMon = false
-                    topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
+                    if BypassTP then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - PosBone.Position).Magnitude > 1500 then
+                        BTP(PosBone)
+                        elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - PosBone.Position).Magnitude < 1500 then
+                        topos(PosBone)
+                        end
+                    else
+                        topos(PosBone)
+                    end
                     for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
                         if v.Name == "Reborn Skeleton" then
                             topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
