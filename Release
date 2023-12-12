@@ -2261,7 +2261,7 @@ spawn(function()
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
                                     v.HumanoidRootPart.Size = Vector3.new(80,80,80)
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
+                                    TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,40,2))
                                     game:GetService("VirtualUser"):CaptureController()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                     sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
@@ -2289,7 +2289,7 @@ spawn(function()
                                                 v.HumanoidRootPart.Size = Vector3.new(80,80,80)
                                                 MagnetDought = true
                                                 PosMonDoughtOpenDoor = v.HumanoidRootPart.CFrame
-                                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                                TP1(v.HumanoidRootPart.CFrame * Pos)
                                                 game:GetService("VirtualUser"):CaptureController()
                                                 game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                             until not _G.AutoDoughtBoss or not v.Parent or v.Humanoid.Health <= 0 or game:GetService("Workspace").Map.CakeLoaf.BigMirror.Other.Transparency == 0 or game:GetService("ReplicatedStorage"):FindFirstChild("Cake Prince") or game:GetService("Workspace").Enemies:FindFirstChild("Cake Prince") or KillMob == 0
@@ -2365,7 +2365,7 @@ spawn(function()
                                     v.Head.CanCollide = false 
                                     StartMagnetBoneMon = true
                                     PosMonBone = v.HumanoidRootPart.CFrame
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
+                                    TP1(v.HumanoidRootPart.CFrame * CFrame.new(PosX,PosY,PosZ))
                                     game:GetService("VirtualUser"):CaptureController()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
                                 until not _G.AutoBone or not v.Parent or v.Humanoid.Health <= 0
@@ -2377,13 +2377,13 @@ spawn(function()
                     topos(CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375))
                     for i,v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do 
                         if v.Name == "Reborn Skeleton" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Living Zombie" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Demonic Soul" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         elseif v.Name == "Posessed Mummy" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                            TP1(v.HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                         end
                     end
                 end
