@@ -1331,6 +1331,11 @@ function AB(M)
     end
 end
 
+function aimbot()
+    workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.Position)
+end
+
+
 function Buso()
     if (not (game.Players.LocalPlayer.Character:FindFirstChild("HasBuso"))) then
         local rel = game.ReplicatedStorage
@@ -1382,7 +1387,7 @@ old =
                 uwu.Character and
                 uwu.Character:FindFirstChild("Head")
          then
-            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
+            aimbot()
             return
         end
         return old(self, unpack({...}))
@@ -1414,7 +1419,7 @@ while task.wait() do
     if uwu then
         if uwu.Character then
             safe_cp(uwu)
-            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.HumanoidRootPart.Position + workspace.CurrentCamera.CFrame.Position)
+            aimbot()
 
             to(
                 (am2(uwu).CFrame * CFrame.new(math.random(-1, 1), math.random(23, 23), math.random(-1, 1))) +
