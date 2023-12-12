@@ -2125,7 +2125,16 @@ G:AddToggle({
 	end    
 })
 
-
+G:AddToggle({
+	Name = "Auto Bone",
+	Default = false,
+    Flag = "Auto Farm",
+    Save = true,
+	Callback = function(Value)
+		_G.AutoBone = Value
+        StopTween(_G.AutoBone)
+	end    
+})
 
 
 
@@ -2335,26 +2344,15 @@ spawn(function()
       local boneframe = CFrame.new(-9508.5673828125, 142.1398468017578, 5737.3603515625)
         if _G.AutoBone and World3 then
             pcall(function()
-                  if BypassTP then
-                  if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - boneframe.Position).Magnitude > 2000 then
-                  BTP(boneframe)
-                  wait(.1)
-                  game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9515.3720703125, 164.00624084473, 5786.0610351562)
-      game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")			
-                  wait(.1)
-                  game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9515.3720703125, 164.00624084473, 5786.0610351562)
-          game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")					
-                  wait(.1)
-                  game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9515.3720703125, 164.00624084473, 5786.0610351562)
-                  wait(.1)
-                  game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-9515.3720703125, 164.00624084473, 5786.0610351562)
-                  wait(3)
-                  elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - boneframe.Position).Magnitude < 2000 then
-                  TP1(boneframe)
-                  end
-                  else
-                    TP1(boneframe)
-                  end
+                if BypassTP then
+                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - boneframe.Position).Magnitude > 2000 then
+                        BTP(boneframe)
+                    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - boneframe.Position).Magnitude < 2000 then
+                        topos(boneframe)
+                        end
+                    else
+                        topos(boneframe)
+                    end
                 if game:GetService("Workspace").Enemies:FindFirstChild("Reborn Skeleton") or game:GetService("Workspace").Enemies:FindFirstChild("Living Zombie") or game:GetService("Workspace").Enemies:FindFirstChild("Demonic Soul") or game:GetService("Workspace").Enemies:FindFirstChild("Posessed Mummy") then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
