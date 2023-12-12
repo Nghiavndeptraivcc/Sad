@@ -145,44 +145,6 @@ if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
 end
 a000000009 = os.time()
 
-AimSkillNearest = true
-spawn(function()
-	while wait(.1) do
-		pcall(function()
-			local MaxDistance = math.huge
-			for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-				if v.Name ~= game.Players.LocalPlayer.Name then
-					local Distance = v:DistanceFromCharacter(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
-					if Distance < MaxDistance then
-						MaxDistance = Distance
-						TargetPlayerAim = v.Name
-					end
-				end
-			end
-		end)
-	end
-end)
-
-spawn(function()
-	pcall(function()
-		game:GetService("RunService").RenderStepped:connect(function()
-			if AimSkillNearest and TargetPlayerAim ~= nil and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name]:FindFirstChild("MousePos") then
-				local args = {
-					[1] = game:GetService("Players"):FindFirstChild(TargetPlayerAim).Character.HumanoidRootPart.Position
-				}
-				game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
-			end
-		end)
-	end)
-end)
-
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        game.Players.LocalPlayer.Character.Stun.Value = 0
-        game.Players.LocalPlayer.Character.Busy.Value = false 
-    end)
-end)
-
 -- Instances:
 local BountyA = game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
@@ -1077,8 +1039,6 @@ function checktarget()
         return find_target()
     end
 
-    workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
-
     if uwu.Character.Humanoid.Health <= 0 then
         Notify("Players Died", 5)
 
@@ -1454,6 +1414,7 @@ while task.wait() do
     if uwu then
         if uwu.Character then
             safe_cp(uwu)
+            workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, uwu.Character.Head.Position + workspace.CurrentCamera.CFrame.Position)
 
             to(
                 (am2(uwu).CFrame * CFrame.new(math.random(-1, 1), math.random(23, 23), math.random(-1, 1))) +
