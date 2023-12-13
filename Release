@@ -2823,71 +2823,68 @@ end)
 
 spawn(function()
     while wait() do
-        if  _G.AutoShark then
+        if _G.KillShark then
             pcall(function()
                 if game:GetService("Workspace").Enemies:FindFirstChild("Shark") then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Shark" then
-                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
-                                repeat task.wait()
-                                    AutoHaki()
-                                    EquipWeapon(SelectWeapon)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.Humanoid.WalkSpeed = 0
-                                    v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
-                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-                                    Click()
-                                until not _G.AutoShark or not v.Parent or v.Humanoid.Health <= 0
-                            end
-                        end
-                    end
-                else
-                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,1,0))
-                    if game:GetService("ReplicatedStorage"):FindFirstChild("Shark") then
-                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Shark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
-                    else
-                    end
-                end
-            end)
-
-        end
-    end
-end)
-
-spawn(function()
-    while wait() do
-        if _G.AutoTerrorShark then
-            pcall(function()
-                if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
-                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                        if v.Name == "Terrorshark" then
-                            if v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") or v.Parent then
+                            if _G.FullyKillSeaEvent and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
                                     v.Head.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
-                                    plr.Character.Humanoid.Sit = false
-                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
-                                    game:GetService("VirtualUser"):CaptureController()
-                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                until not _G.AutoTerrorShark or v.Humanoid.Health <= 0 or not v.Parent or not v:FindFirstChild("HumanoidRootPart")
+                                    v.HumanoidRootPart.Size = Vector3.new(2, 20, 2)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Click()
+                                until not _G.KillShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
                             end
                         end
                     end
                 else
-                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,1,0))
-                    if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
-                        topos(game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark").HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Shark") then
+                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Shark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
                     end
                 end
             end)
         end
     end
 end)
+
+spawn(function()
+    while wait() do
+        if _G.KillTerrorShark then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Terrorshark" then
+                            if _G.FullyKillSeaEvent and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.Head.CanCollide = false
+                                    v.HumanoidRootPart.Size = Vector3.new(2, 20, 2)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Click()
+                                until not _G.KillShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                            end
+                        end
+                    end
+                else
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark") then
+                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                    end
+                end
+            end)
+        end
+    end
+end)
+                                    
 
 spawn(function()
     while wait() do
