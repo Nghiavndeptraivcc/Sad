@@ -2058,6 +2058,8 @@ if game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
     end
 end
 
+local plr = game:GetService("Players").LocalPlayer
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
 local Window = OrionLib:MakeWindow({Name = "Night Hub(Release)", HidePremium = false,IntroText = "Night Hub", SaveConfig = true, ConfigFolder = "Night Hub"})
 
@@ -2834,6 +2836,7 @@ spawn(function()
                                     v.Humanoid.WalkSpeed = 0
                                     v.Head.CanCollide = false
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    plr.Character.Humanoid.Shit = false
                                     topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
                                     game:GetService("VirtualUser"):CaptureController()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
@@ -2866,6 +2869,7 @@ spawn(function()
                                     v.Humanoid.WalkSpeed = 0
                                     v.Head.CanCollide = false
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    plr.Character.Humanoid.Shit = false
                                     topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
                                     game:GetService("VirtualUser"):CaptureController()
                                     game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
