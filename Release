@@ -2828,14 +2828,14 @@ spawn(function()
                 if game:GetService("Workspace").Enemies:FindFirstChild("Shark") then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Shark" then
-                            if _G.FullyKillSeaEvent and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                            if _G.KillShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
                                     v.Head.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(2, 20, 2)
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
                                     Click()
@@ -2844,8 +2844,10 @@ spawn(function()
                         end
                     end
                 else
-                    if game:GetService("ReplicatedStorage"):FindFirstChild("Shark") then
-                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Shark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Shark" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
                     end
                 end
             end)
@@ -2860,24 +2862,25 @@ spawn(function()
                 if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Terrorshark" then
-                            if _G.FullyKillSeaEvent and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                            if _G.KillTerrorShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
                                     v.Head.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(2, 20, 2)
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
                                     Click()
-                                until not _G.KillShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                until not _G.KillTerrorShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
                             end
                         end
                     end
                 else
-                    if game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark") then
-                        topos(game:GetService("ReplicatedStorage"):FindFirstChild("Terrorshark").HumanoidRootPart.CFrame * CFrame.new(2,20,2))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Terrorshark" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
                     end
                 end
             end)
