@@ -2894,8 +2894,8 @@ spawn(function()
         pcall(function()
             if _G.BiirTrax then
                 wait(0.8) 
-                local targetModelName = "PirateBrigade"  -- Ganti dengan nama model yang dicari
-                local models = workspace.Boats:GetChildren()  -- Sesuaikan dengan hierarki kapalmu
+                local targetModelName = "PirateBrigade"
+                local models = workspace.Boats:GetChildren()
 
                 for _, model in pairs(models) do
                     if model.Name == targetModelName then
@@ -2907,7 +2907,7 @@ spawn(function()
                             model:SetPrimaryPartCFrame(model.PrimaryPart.CFrame + forwardDirection * speed)
                             task.wait()
                             if not _G.BiirTrax then
-                                break  -- Hentikan pergerakan jika _G.BiirTrax diatur ke false
+                                break
                             end
                         end
                     end
@@ -2951,7 +2951,6 @@ spawn(function()
                                 wait(0.1) 
                                 _G[enemyVariable] = true
 
-                                -- Menunggu musuh mati
                                 while game:GetService("Workspace").Enemies:FindFirstChild(enemyName) do
                                     wait(0.2) 
                                 end
