@@ -2528,6 +2528,17 @@ local Section = SE:AddSection({
 	Name = "Boats"
 })
 
+SE:AddButton({
+	Name = "Buy Boats",
+	Callback = function()   
+        local args = {
+            [1] = "BuyBoat",
+            [2] = "PirateBrigade"
+            }
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+  	end
+})
+
 SE:AddToggle({
 	Name = "Auto Sail",
 	Default = false,
