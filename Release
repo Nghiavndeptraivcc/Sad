@@ -2043,6 +2043,35 @@ function CheckItem(ah)
     end
 end
 
+local plr = game.Players.LocalPlayer
+
+spawn(function()
+    while wait() do
+        if _G.SpeedBoats then
+            for i, v in pairs(workspace.Boats:GetChildren()) do
+                if v:FindFirstChild("Owner") then
+                    if v:FindFirstChild("Owner").Value == plr then
+                        table.foreach(v:GetDescendants(), function(a, child)
+                            if child:IsA("BasePart") or child:IsA("MeshPart") or child:IsA("Part") then
+                            child.CanCollide = false
+                            end
+                        end)
+                        v:FindFirstChild("Humanoid"):GetPropertyChangedSignal("Value"):Connect(function(g)
+                            if g == 0 then
+                            print("Vailon")
+                        end
+                    end)
+                    repeat wait()
+                        plr.Character:SetPrimaryPartCFrame(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                        until plr.Character:FindFirstChildOfClass("Humanoid").Sit == true
+                        v:FindFirstChild("VehicleSeat").MaxSpeed = 350
+                    end
+                end
+            end
+        end
+    end
+end)
+
 if getgenv().FixLag then
     local decalsyeeted = true
     local g = game
@@ -2553,6 +2582,21 @@ SE:AddToggle({
 })
 
 SE:AddToggle({
+	Name = "Speed Boats",
+	Default = false,
+    Flag = "Speed Boats",
+    Save = true,
+	Callback = function(Value)
+		_G.SpeedBoats = Value
+        StopTween(_G.SpeedBoats)
+	end    
+})
+
+local Section = SE:AddSection({
+	Name = "Farmming"
+})
+
+SE:AddToggle({
 	Name = "Auto Shark",
 	Default = false,
     Flag = "Auto Shark",
@@ -2993,7 +3037,6 @@ spawn(function()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
-                                    v.Head.CanCollide = false
                                     v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
