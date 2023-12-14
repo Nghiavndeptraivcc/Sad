@@ -3827,6 +3827,7 @@ I:AddLabel("Skidder Status : 0%")
 
 G:AddSeperator(" Select Weapon : ")
 
+local WeaponList = {"Melee","Sword","Fruit","Gun"}
 G:AddDropdown("Select Weapon",WeaponList,function(value)
     _G.SelectWeapon = value
     end)
