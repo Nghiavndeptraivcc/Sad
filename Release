@@ -3093,9 +3093,9 @@ spawn(function()
                     topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Terrorshark" then
-                            if MyHealth > 3000 then
+                            if MyHealth >= 3000 then
                                 topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
-                            elseif MyHealth < 3000 then
+                            elseif MyHealth <= 3000 then
                                 topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 99, 2))
                             end
                         end
