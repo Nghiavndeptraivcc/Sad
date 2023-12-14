@@ -2592,6 +2592,27 @@ SE:AddToggle({
 	end    
 })
 
+SE:AddToggle({
+	Name = "Auto Press W",
+	Default = false,
+    Flag = "Auto Press W",
+    Save = true,
+	Callback = function(Value)
+		_G.PressW = Value
+        StopTween(_G.PressW)
+	end    
+})
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.PressW then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+            end
+        end)
+    end
+end)
+
 local Section = SE:AddSection({
 	Name = "Farmming"
 })
@@ -2618,7 +2639,16 @@ SE:AddToggle({
 	end    
 })
 
-
+SE:AddToggle({
+	Name = "Auto Fish Crew Member",
+	Default = false,
+    Flag = "Auto Fish Crew Member",
+    Save = true,
+	Callback = function(Value)
+		_G.KillFishCrew = Value
+        StopTween(_G.KillFishCrew)
+	end    
+})
 
 
 
@@ -3056,6 +3086,39 @@ spawn(function()
         end
     end
 end)
+
+spawn(function()
+    while wait() do
+        if _G.KillFishCrew then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Fish Crew Member" then
+                            if _G.KillFishCrew and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Click()
+                                until not _G.KillFishCrew or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                            end
+                        end
+                    end
+                else
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Fish Crew Member" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
                                     
 
 spawn(function()
@@ -3186,6 +3249,19 @@ spawn(function()
                         end
                     end
                 end
+            end
+        end)
+    end
+end)
+
+_G.WalkWater = true
+spawn(function()
+    while task.wait() do
+        pcall(function()
+            if _G.WalkWater then
+                game:GetService("Workspace").Map["WaterBase-Plane"].Size = Vector3.new(1000,112,1000)
+            else
+                game:GetService("Workspace").Map["WaterBase-Plane"].Size = Vector3.new(1000,80,1000)
             end
         end)
     end
