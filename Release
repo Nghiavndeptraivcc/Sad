@@ -3080,8 +3080,7 @@ spawn(function()
                                 repeat task.wait()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
-                                    v.HumanoidRootPart.CanCollide = false
-                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    v.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
                                     Click()
