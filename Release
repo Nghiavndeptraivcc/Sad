@@ -3105,7 +3105,6 @@ spawn(function()
                                     AutoHaki()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
-                                    topos(v.HumanoidRootPart.CFrame * Pos)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
                                     Fastattack = true ----// ehehehehehheeh \\--------------
                                     Click()
@@ -3118,7 +3117,11 @@ spawn(function()
                     topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Terrorshark" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                            if plr.Character.Humanoid.Health >= 3000 then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                            elseif plr.Character.Humanoid.Health <= 3000 then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 99, 2))
+                            end
                         end
                     end
                 end
