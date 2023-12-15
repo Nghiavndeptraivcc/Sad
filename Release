@@ -10,6 +10,23 @@ else
     game:GetService("Players").LocalPlayer:Kick("Do not Support, Please wait...")
 end
 
+-----// Join \\--------------------
+
+if game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+    for i, v in pairs(
+        getconnections(
+            game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated
+        )
+    ) do
+        for a, b in pairs(getconnections(game:GetService("UserInputService").TouchTapInWorld)) do
+            b:Fire()
+        end
+        v.Function()
+    end
+end
+
+------// CheckQuest \\---------------------
+
 local MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
 function QuestCheck()
     if Sea1 then
