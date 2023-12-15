@@ -2595,6 +2595,37 @@ SE:AddToggle({
 })
 
 SE:AddToggle({
+	Name = "Teleport Boats To Zone 6",
+	Default = false,
+    Flag = "Teleport Boats To Zone 6",
+    Save = true,
+	Callback = function(Value)
+		_G.Zone6 = Value
+        StopTween(_G.Zone6)
+	end    
+})
+
+spawn(function()
+    while wait() do
+        if _G.Zone6 then
+            pcall(function()
+                for i,v in pairs(game.Workspace.Boats:GetChildren()) do
+                    if v:FindFirstChild("Owner") then
+                        if v:FindFirstChild("Owner").Value == plr then
+                            if v:FindFirstChild("VehicleSeat") then
+                                v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(-40529.1445, 10.7776175, 11499.3086)
+                                wait(1.0)
+                                topos(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+SE:AddToggle({
 	Name = "Speed Boats",
 	Default = false,
     Flag = "Speed Boats",
