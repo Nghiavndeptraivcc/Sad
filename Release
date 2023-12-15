@@ -1000,6 +1000,22 @@ task.spawn(function()
 end)
 
 local Section = G:AddSection({
+	Name = "Settings Farm"
+})
+
+G:AddToggle({
+	Name = "Turn On V4",
+	Default = false,
+    Flag = "Turn On V4",
+    Save = true,
+	Callback = function(Value)
+		_G.V4 = Value
+        StopTween(_G.V4)
+	end    
+})
+
+
+local Section = G:AddSection({
 	Name = "Farm DropDown"
 })
 
@@ -1559,6 +1575,19 @@ spawn(function()
         end
     end
 end)
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.V4 then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
+                wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
+            end
+        end)
+    end
+end)
+
 
 spawn(function()
     while wait(.1) do
