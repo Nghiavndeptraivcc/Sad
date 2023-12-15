@@ -2605,26 +2605,6 @@ SE:AddToggle({
 	end    
 })
 
-spawn(function()
-    while wait() do
-        if _G.Zone6 then
-            pcall(function()
-                for i,v in pairs(game.Workspace.Boats:GetChildren()) do
-                    if v:FindFirstChild("Owner") then
-                        if v:FindFirstChild("Owner").Value == plr then
-                            if v:FindFirstChild("VehicleSeat") then
-                                v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(-40529.1445, 10.7776175, 11499.3086)
-                                wait(1.0)
-                                topos(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
-                            end
-                        end
-                    end
-                end
-            end)
-        end
-    end
-end)
-
 SE:AddToggle({
 	Name = "Speed Boats",
 	Default = false,
@@ -3096,6 +3076,7 @@ spawn(function()
                                     Fastattack = true ----// ehehehehehheeh \\--------------
                                     Click()
                                 until not _G.KillShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
                             end
                         end
                     end
@@ -3129,6 +3110,7 @@ spawn(function()
                                     Fastattack = true ----// ehehehehehheeh \\--------------
                                     Click()
                                 until not _G.KillTerrorShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
                             end
                         end
                     end
@@ -3136,7 +3118,7 @@ spawn(function()
                     topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Terrorshark" then
-                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 40, 2))
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
                         end
                     end
                 end
@@ -3164,6 +3146,7 @@ spawn(function()
                                     Fastattack = true ----// ehehehehehheeh \\--------------
                                     Click()
                                 until not _G.KillFishCrew or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
                             end
                         end
                     end
@@ -3200,6 +3183,7 @@ spawn(function()
                                     Fastattack = true ----// ehehehehehheeh \\--------------
                                     Click()
                                 until not _G.KillPiranha or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
                             end
                         end
                     end
@@ -3208,6 +3192,26 @@ spawn(function()
                     for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                         if v.Name == "Piranha" then
                             topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.Zone6 then
+            pcall(function()
+                for i,v in pairs(game.Workspace.Boats:GetChildren()) do
+                    if v:FindFirstChild("Owner") then
+                        if v:FindFirstChild("Owner").Value == plr then
+                            if v:FindFirstChild("VehicleSeat") then
+                                v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(-40529.1445, 10.7776175, 11499.3086)
+                                wait(1.0)
+                                topos(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                            end
                         end
                     end
                 end
