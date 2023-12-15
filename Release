@@ -2663,6 +2663,18 @@ SE:AddToggle({
 	end    
 })
 
+SE:AddToggle({
+	Name = "Auto Piranha",
+	Default = false,
+    Flag = "Auto Piranha",
+    Save = true,
+	Callback = function(Value)
+		_G.KillPiranha = Value
+        StopTween(_G.KillPiranha)
+	end    
+})
+
+
 
 
 
@@ -3136,7 +3148,42 @@ spawn(function()
         end
     end
 end)
-                                    
+           
+
+spawn(function()
+    while wait() do
+        if _G.KillPiranha then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Piranha") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Piranha" then
+                            if _G.KillPiranha and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Fastattack = true ----// ehehehehehheeh \\--------------
+                                    Click()
+                                until not _G.KillPiranha or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                            end
+                        end
+                    end
+                else
+                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Piranha" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
 
 spawn(function()
     while wait() do
