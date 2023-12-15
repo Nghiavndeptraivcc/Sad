@@ -3210,7 +3210,7 @@ spawn(function()
                             if v:FindFirstChild("VehicleSeat") then
                                 v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(-40529.1445, 10.7776175, 11499.3086)
                                 wait(1.0)
-                                topos(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                                topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
                             end
                         end
                     end
