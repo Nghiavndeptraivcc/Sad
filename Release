@@ -1221,7 +1221,7 @@ spawn(function()
                                     if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                         repeat task.wait()
                                             EquipWeapon(_G.SelectWeapon)
-                                            AutoHaki()                                            
+                                            TurnOnBuso()                                            
                                             PosMon = v.HumanoidRootPart.CFrame
                                             TP1(v.HumanoidRootPart.CFrame * Pos)
                                             v.HumanoidRootPart.CanCollide = false
@@ -1262,7 +1262,7 @@ spawn(function()
                         if v.Name == "Reborn Skeleton" or v.Name == "Living Zombie" or v.Name == "Demonic Soul" or v.Name == "Posessed Mummy" then
                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -1297,7 +1297,7 @@ spawn(function()
                         if v.Name == "Cake Prince" then
                             if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                 repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -1322,7 +1322,7 @@ spawn(function()
                                     if v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker" then
                                         if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                                             repeat task.wait()
-                                                AutoHaki()
+                                                TurnOnBuso()
                                                 EquipWeapon(_G.SelectWeapon)
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Humanoid.WalkSpeed = 0
