@@ -904,6 +904,33 @@ spawn(function()
     end
 end)
 
+spawn(function()
+    while wait() do
+        if _G.FlyBoats then
+            for i, v in pairs(workspace.Boats:GetChildren()) do
+                if v:FindFirstChild("Owner") then
+                    if v:FindFirstChild("Owner").Value == plr then
+                        table.foreach(v:GetDescendants(), function(a, child)
+                            if child:IsA("BasePart") or child:IsA("MeshPart") or child:IsA("Part") then
+                            child.CanCollide = false
+                            end
+                        end)
+                        v:FindFirstChild("Humanoid"):GetPropertyChangedSignal("Value"):Connect(function(g)
+                            if g == 0 then
+                            print("Vailon")
+                        end
+                    end)
+                    repeat wait()
+                        plr.Character:SetPrimaryPartCFrame(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                        until plr.Character:FindFirstChildOfClass("Humanoid").Sit == false
+                        v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, 30, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+                    end
+                end
+            end
+        end
+    end
+end)
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
 local Window = OrionLib:MakeWindow({Name = "Night Hub(Release)", HidePremium = false,IntroText = "Night Hub", SaveConfig = true, ConfigFolder = "Night Hub"})
 
@@ -1164,6 +1191,17 @@ SE:AddToggle({
 	Callback = function(Value)
 		_G.SpeedBoats = Value
         StopTween(_G.SpeedBoats)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Fly Boats",
+	Default = false,
+    Flag = "Fly Boats",
+    Save = true,
+	Callback = function(Value)
+		_G.FlyBoats = Value
+        StopTween(_G.FlyBoats)
 	end    
 })
 
