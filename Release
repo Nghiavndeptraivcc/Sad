@@ -693,23 +693,47 @@ function GetDistance(target)
 end
 
 function BTP(P)
-    repeat wait(1)
-        game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        task.wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
-        wait(0.5)
-        until (P.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500
-    end
+repeat wait(1)
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+    task.wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+    wait(.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+    wait(.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+    wait(.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+until (P.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500
+end
+
+function TelePPlayer(P)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+end
+
+function TP(Pos)
+Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+if Distance < 25 then
+    Speed = 10000
+elseif Distance < 50 then
+    Speed = 2000
+elseif Distance < 150 then
+    Speed = 800
+elseif Distance < 250 then
+    Speed = 600
+elseif Distance < 500 then
+    Speed = 400
+elseif Distance < 750 then
+    Speed = 275
+elseif Distance >= 1000 then
+    Speed = 250
+end
+game:GetService("TweenService"):Create(
+    game.Players.LocalPlayer.Character.HumanoidRootPart,
+    TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+    {CFrame = Pos}
+):Play()
+end
 
 function TP1(Pos)
     Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -722,11 +746,11 @@ function TP1(Pos)
     elseif Distance < 250 then
         Speed = 600
     elseif Distance < 500 then
-        Speed = 325
-    elseif Distance < 750 then
         Speed = 300
-    elseif Distance >= 1000 then
+    elseif Distance < 750 then
         Speed = 275
+    elseif Distance >= 1000 then
+        Speed = 250
     end
     game:GetService("TweenService"):Create(
         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
@@ -746,17 +770,96 @@ function topos(Pos)
     elseif Distance < 250 then
         Speed = 600
     elseif Distance < 500 then
-        Speed = 325
-    elseif Distance < 750 then
         Speed = 300
-    elseif Distance >= 1000 then
+    elseif Distance < 750 then
         Speed = 275
+    elseif Distance >= 1000 then
+        Speed = 250
     end
     game:GetService("TweenService"):Create(
         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
         TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
         {CFrame = Pos}
     ):Play()
+end
+
+function TPB(CFgo)
+local tween_s = game:service"TweenService"
+local info = TweenInfo.new((game:GetService("Workspace").Boats.MarineBrigade.VehicleSeat.CFrame.Position - CFgo.Position).Magnitude/300, Enum.EasingStyle.Linear)
+tween = tween_s:Create(game:GetService("Workspace").Boats.MarineBrigade.VehicleSeat, info, {CFrame = CFgo})
+tween:Play()
+
+local tweenfunc = {}
+
+function tweenfunc:Stop()
+    tween:Cancel()
+end
+
+return tweenfunc
+end
+
+function TPP(CFgo)
+if game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Health <= 0 or not game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") then tween:Cancel() repeat wait() until game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid") and game:GetService("Players").LocalPlayer.Character:WaitForChild("Humanoid").Health > 0 wait(7) return end
+local tween_s = game:service"TweenService"
+local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude/325, Enum.EasingStyle.Linear)
+tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CFgo})
+tween:Play()
+
+local tweenfunc = {}
+
+function tweenfunc:Stop()
+    tween:Cancel()
+end
+
+return tweenfunc
+end
+
+getgenv().ToTargets = function(p)
+task.spawn(function()
+    pcall(function()
+        if game:GetService("Players").LocalPlayer:DistanceFromCharacter(p.Position) <= 250 then 
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = p
+        elseif not game.Players.LocalPlayer.Character:FindFirstChild("Root")then 
+            local K = Instance.new("Part",game.Players.LocalPlayer.Character)
+            K.Size = Vector3.new(1,0.5,1)
+            K.Name = "Root"
+            K.Anchored = true
+            K.Transparency = 1
+            K.CanCollide = false
+            K.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,20,0)
+        end
+        local U = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude
+        local z = game:service("TweenService")
+        local B = TweenInfo.new((p.Position-game.Players.LocalPlayer.Character.Root.Position).Magnitude/300,Enum.EasingStyle.Linear)
+        local S,g = pcall(function()
+        local q = z:Create(game.Players.LocalPlayer.Character.Root,B,{CFrame = p})
+        q:Play()
+    end)
+    if not S then 
+        return g
+    end
+    game.Players.LocalPlayer.Character.Root.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        if S and game.Players.LocalPlayer.Character:FindFirstChild("Root") then 
+            pcall(function()
+                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude >= 20 then 
+                    spawn(function()
+                        pcall(function()
+                            if (game.Players.LocalPlayer.Character.Root.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude > 150 then 
+                                game.Players.LocalPlayer.Character.Root.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                            else 
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=game.Players.LocalPlayer.Character.Root.CFrame
+                            end
+                        end)
+                    end)
+                elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude >= 10 and(game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude < 20 then 
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+                elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-p.Position).Magnitude < 10 then 
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
+                end
+            end)
+        end
+    end)
+end)
 end
 
 Type = 1
@@ -897,33 +1000,6 @@ spawn(function()
                         plr.Character:SetPrimaryPartCFrame(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
                         until plr.Character:FindFirstChildOfClass("Humanoid").Sit == true
                         v:FindFirstChild("VehicleSeat").MaxSpeed = 350
-                    end
-                end
-            end
-        end
-    end
-end)
-
-spawn(function()
-    while wait() do
-        if _G.FlyBoats then
-            for i, v in pairs(workspace.Boats:GetChildren()) do
-                if v:FindFirstChild("Owner") then
-                    if v:FindFirstChild("Owner").Value == plr then
-                        table.foreach(v:GetDescendants(), function(a, child)
-                            if child:IsA("BasePart") or child:IsA("MeshPart") or child:IsA("Part") then
-                            child.CanCollide = false
-                            end
-                        end)
-                        v:FindFirstChild("Humanoid"):GetPropertyChangedSignal("Value"):Connect(function(g)
-                            if g == 0 then
-                            print("Vailon")
-                        end
-                    end)
-                    repeat wait()
-                        plr.Character:SetPrimaryPartCFrame(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
-                        until plr.Character:FindFirstChildOfClass("Humanoid").Sit == false
-                        v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X, 30, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
                     end
                 end
             end
@@ -1191,17 +1267,6 @@ SE:AddToggle({
 	Callback = function(Value)
 		_G.SpeedBoats = Value
         StopTween(_G.SpeedBoats)
-	end    
-})
-
-SE:AddToggle({
-	Name = "Fly Boats",
-	Default = false,
-    Flag = "Fly Boats",
-    Save = true,
-	Callback = function(Value)
-		_G.FlyBoats = Value
-        StopTween(_G.FlyBoats)
 	end    
 })
 
