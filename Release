@@ -1767,7 +1767,7 @@ spawn(function()
                         if v.Name == "Fish Crew Member" then
                             if _G.KillFishCrew and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -1804,7 +1804,7 @@ spawn(function()
                         if v.Name == "Piranha" then
                             if _G.KillPiranha and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -1840,7 +1840,7 @@ spawn(function()
                         if v.Name == "Shark" then
                             if _G.KillShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.CanCollide = false
                                     v.Humanoid.WalkSpeed = 0
@@ -1877,7 +1877,7 @@ spawn(function()
                         if v.Name == "Terrorshark" then
                             if _G.KillTerrorShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
                                 repeat task.wait()
-                                    AutoHaki()
+                                    TurnOnBuso()
                                     EquipWeapon(_G.SelectWeapon)
                                     v.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
                                     game.Players.LocalPlayer.Character.Humanoid.Sit = false
