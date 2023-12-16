@@ -875,7 +875,35 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
     game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 
-loadstring(Game:HttpGet("https://raw.githubusercontent.com/JewhisKids/NewFreeScript/main/Misc/SuperFpsBoost.lua"))()
+local plr = game.Players.LocalPlayer
+
+spawn(function()
+    while wait() do
+        if _G.SpeedBoats then
+            for i, v in pairs(workspace.Boats:GetChildren()) do
+                if v:FindFirstChild("Owner") then
+                    if v:FindFirstChild("Owner").Value == plr then
+                        table.foreach(v:GetDescendants(), function(a, child)
+                            if child:IsA("BasePart") or child:IsA("MeshPart") or child:IsA("Part") then
+                            child.CanCollide = false
+                            end
+                        end)
+                        v:FindFirstChild("Humanoid"):GetPropertyChangedSignal("Value"):Connect(function(g)
+                            if g == 0 then
+                            print("Vailon")
+                        end
+                    end)
+                    repeat wait()
+                        plr.Character:SetPrimaryPartCFrame(v:FindFirstChild("VehicleSeat").CFrame * CFrame.new(0, 3, 0))
+                        until plr.Character:FindFirstChildOfClass("Humanoid").Sit == true
+                        v:FindFirstChild("VehicleSeat").MaxSpeed = 350
+                    end
+                end
+            end
+        end
+    end
+end)
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Nghiavndeptraivcc/Orion-nhu-cut/main/Orion.Source')))()
 local Window = OrionLib:MakeWindow({Name = "Night Hub(Release)", HidePremium = false,IntroText = "Night Hub", SaveConfig = true, ConfigFolder = "Night Hub"})
 
@@ -1086,6 +1114,129 @@ G:AddToggle({
         StopTween(_G.RaidPirate)
 	end    
 })
+
+---------// Sea Event \\----------------------------------
+
+local Section = SE:AddSection({
+	Name = "Bypass"
+})
+
+SE:AddButton({
+	Name = "Bypass Teleport Tiki",
+	Callback = function()   
+      	BTP(CFrame.new(-16101.1885, 12.8422165, 380.942291))
+  	end    
+})
+
+local Section = SE:AddSection({
+	Name = "Boats"
+})
+
+SE:AddButton({
+	Name = "Buy Boats",
+	Callback = function()   
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-16921.853515625, 9.0863618850708, 433.9601135253906) 
+        wait(0.5)
+        local args = {
+        [1] = "BuyBoat",
+        [2] = "PirateBrigade"
+        }
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+  	end
+})
+
+SE:AddToggle({
+	Name = "Teleport Boats To Zone 6",
+	Default = false,
+    Flag = "Teleport Boats To Zone 6",
+    Save = true,
+	Callback = function(Value)
+		_G.Zone6 = Value
+        StopTween(_G.Zone6)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Speed Boats",
+	Default = false,
+    Flag = "Speed Boats",
+    Save = true,
+	Callback = function(Value)
+		_G.SpeedBoats = Value
+        StopTween(_G.SpeedBoats)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Auto Press W",
+	Default = false,
+    Flag = "Auto Press W",
+    Save = true,
+	Callback = function(Value)
+		_G.PressW = Value
+        StopTween(_G.PressW)
+	end    
+})
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.PressW then
+                game:GetService("VirtualInputManager"):SendKeyEvent(true,"W",false,game)
+            end
+        end)
+    end
+end)
+
+local Section = SE:AddSection({
+	Name = "Farmming"
+})
+
+SE:AddToggle({
+	Name = "Auto Shark",
+	Default = false,
+    Flag = "Auto Shark",
+    Save = true,
+	Callback = function(Value)
+		_G.KillShark = Value
+        StopTween(_G.KillShark)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Auto Terror Shark",
+	Default = false,
+    Flag = "Auto Terror Shark",
+    Save = true,
+	Callback = function(Value)
+		_G.KillTerrorShark = Value
+        StopTween(_G.KillTerrorShark)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Auto Fish Crew Member",
+	Default = false,
+    Flag = "Auto Fish Crew Member",
+    Save = true,
+	Callback = function(Value)
+		_G.KillFishCrew = Value
+        StopTween(_G.KillFishCrew)
+	end    
+})
+
+SE:AddToggle({
+	Name = "Auto Piranha",
+	Default = false,
+    Flag = "Auto Piranha",
+    Save = true,
+	Callback = function(Value)
+		_G.KillPiranha = Value
+        StopTween(_G.KillPiranha)
+	end    
+})
+
+
 
 --------// Settings \\------------------------------------
 
@@ -1607,6 +1758,172 @@ spawn(function()
     end
 end)
 
+spawn(function()
+    while wait() do
+        if _G.KillFishCrew then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Fish Crew Member") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Fish Crew Member" then
+                            if _G.KillFishCrew and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Fastattack = true ----// ehehehehehheeh \\--------------
+                                    Click()
+                                until not _G.KillFishCrew or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
+                            end
+                        end
+                    end
+                else
+                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Fish Crew Member" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+           
+
+spawn(function()
+    while wait() do
+        if _G.KillPiranha then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Piranha") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Piranha" then
+                            if _G.KillPiranha and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Fastattack = true ----// ehehehehehheeh \\--------------
+                                    Click()
+                                until not _G.KillPiranha or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
+                            end
+                        end
+                    end
+                else
+                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Piranha" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.KillShark then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Shark") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Shark" then
+                            if _G.KillShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    v.Head.CanCollide = false
+                                    v.HumanoidRootPart.Size = Vector3.new(60, 60, 60)
+                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Fastattack = true ----// ehehehehehheeh \\--------------
+                                    Click()
+                                until not _G.KillShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
+                            end
+                        end
+                    end
+                else
+                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Shark" then
+                            topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.KillTerrorShark then
+            pcall(function()
+                if game:GetService("Workspace").Enemies:FindFirstChild("Terrorshark") then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Terrorshark" then
+                            if _G.KillTerrorShark and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and v.Parent then
+                                repeat task.wait()
+                                    AutoHaki()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
+                                    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                                    Fastattack = true ----// ehehehehehheeh \\--------------
+                                    Click()
+                                until not _G.KillTerrorShark or v.Humanoid.Health < 0 or not v:FindFirstChild("HumanoidRootPart") or not v.Parent
+                                Fastattack = false
+                            end
+                        end
+                    end
+                else
+                    topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Terrorshark" then
+                            if plr.Character.Humanoid.Health >= 3000 then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                            elseif plr.Character.Humanoid.Health <= 3000 then
+                                topos(v.HumanoidRootPart.CFrame * CFrame.new(2, 99, 2))
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.Zone6 then
+            pcall(function()
+                for i,v in pairs(game.Workspace.Boats:GetChildren()) do
+                    if v:FindFirstChild("Owner") then
+                        if v:FindFirstChild("Owner").Value == plr then
+                            if v:FindFirstChild("VehicleSeat") then
+                                v:FindFirstChild("VehicleSeat").CFrame = CFrame.new(-44842.3945, 10.7790766, 16911.3477)
+                                wait(1.0)
+                                topos(game:GetService("Workspace").Boats.PirateBrigade.VehicleSeat.CFrame * CFrame.new(0,3,0))
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
 
 spawn(function()
     while wait(.1) do
