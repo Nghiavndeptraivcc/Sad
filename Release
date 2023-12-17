@@ -2032,6 +2032,124 @@ spawn(function()
 end)
 
 spawn(function()
+    while wait() do
+        if _G.Farm and _G.SelectFarm == "Level" then
+            if MyLevel == 10 or MyLevel <= 15 then
+                SkipLevel = true
+                wait(3)
+                _G.Farm = false
+            end
+        end
+    end
+end)
+
+local x2Code = {
+    "JULYUPDATE_RESET",
+    "staffbattle",
+    "Sub2CaptainMaui",
+    "SUB2GAMERROBOT_RESET1",
+    "KittGaming",
+    "Sub2Fer999",
+    "Enyu_is_Pro",
+    "Magicbus",
+    "ENYU_IS_PRO",
+    "FUDD10",
+    "BIGNEWS",
+    "THEGREATACE",
+    "SUB2GAMERROBOT_EXP1",
+    "STRAWHATMAIME",
+    "SUB2OFFICIALNOOBIE",
+    "SUB2NOOBMASTER123",
+    "SUB2DAIGROCK",
+    "AXIORE",
+    "TANTAIGAMIMG",
+    "STRAWHATMAINE",
+    "JCWK",
+    "FUDD10_V2",
+    "SUB2FER999",
+    "MAGICBIS",
+    "TY_FOR_WATCHING",
+    "STARCODEHEO"
+}
+
+spawn(function()
+    while wait() do
+        if game.Players.LocalPlayer.Data.Level.Value >= 10 then
+            function RedeemCode(value)
+                game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
+            end
+            for i,v in pairs(x2Code) do
+                RedeemCode(v)
+            end
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if SkipLevel and Sea1 then
+            if game.Players.LocalPlayer.Data.Level.Value == 10 or game.Players.LocalPlayer.Data.Level.Value <= 15 then
+                _G.Farm = false
+                SkipLevel = true
+            end
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if SkipLevel and Sea1 then
+            pcall(function()
+            if game.Players.LocalPlayer.Data.Level.Value >= 10 then
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance",Vector3.new(-7894.6176757813, 5547.1416015625, -380.29119873047))
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == "Shanda" or v.Name == "Royal Squad" or v.Name == "Royal Soldier" then
+                            if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                repeat task.wait()
+                                    TurnOnBuso()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    v.HumanoidRootPart.CanCollide = false
+                                    v.Humanoid.WalkSpeed = 0
+                                    StardMag = true
+                                    FastMon = v.HumanoidRootPart.CFrame
+                                    v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                    TP1(v.HumanoidRootPart.CFrame * Pos)
+                                    game:GetService("VirtualUser"):CaptureController()
+                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                until not SkipLevel or not v.Parent or v.Humanoid.Health <= 0
+                                StardMag = false
+                                TP1(CFrame.new(-7678.48974609375, 5566.40380859375, -497.2156066894531))
+                            end
+                        end
+                    end
+                else
+                    if game:GetService("ReplicatedStorage"):FindFirstChild("Shanda") then
+                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Shanda").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                    elseif game:GetService("ReplicatedStorage"):FindFirstChild("Royal Squad") then
+                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Royal Squad").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                    elseif game:GetService("ReplicatedStorage"):FindFirstChild("Royal Soldier") then
+                        TP1(game:GetService("ReplicatedStorage"):FindFirstChild("Royal Soldier").HumanoidRootPart.CFrame * CFrame.new(5,10,2))
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+spawn(function()
+    pcall(function()
+        while wait() do
+            if SkipLevel and Sea1 then
+                if game.Players.LocalPlayer.Data.Level.Value >= 150 then
+                    SkipLevel = false
+                    _G.Farm = true
+                end
+            end
+        end
+    end)
+end)
+
+spawn(function()
     while task.wait() do
         pcall(function()
             if _G.BringMonster then
@@ -2084,6 +2202,19 @@ spawn(function()
                     end
                     if _G.Farm and _G.SelectFarm == "Farm Dought Boss" and MagnetDought then
                         if (v.Name == "Cookie Crafter" or v.Name == "Cake Guard" or v.Name == "Baking Staff" or v.Name == "Head Baker") and (v.HumanoidRootPart.Position - PosMonDoughtOpenDoor.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                            v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                            v.Humanoid:ChangeState(14)
+                            v.HumanoidRootPart.CanCollide = false
+                            v.Head.CanCollide = false
+                            v.HumanoidRootPart.CFrame = PosMonDoughtOpenDoor
+                            if v.Humanoid:FindFirstChild("Animator") then
+                                v.Humanoid.Animator:Destroy()
+                            end
+                            sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+                        end
+                    end
+                    if SkipLevel and StardMag then
+                        if (v.Name == "Shanda" or v.Name == "Royal Squad" or v.Name == "Royal Soldier") and (v.HumanoidRootPart.Position - FastMon.Position).Magnitude <= _G.BringMode and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
                             v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                             v.Humanoid:ChangeState(14)
                             v.HumanoidRootPart.CanCollide = false
