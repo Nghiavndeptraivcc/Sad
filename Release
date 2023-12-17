@@ -1231,6 +1231,12 @@ local IQ = Window:MakeTab({
 	PremiumOnly = false
 })
 
+local ST = Window:MakeTab({
+	Name = "Stats",
+	Icon = "rbxassetid://15541504459",
+	PremiumOnly = false
+})
+
 local E = Window:MakeTab({
 	Name = "Event New!",
 	Icon = "rbxassetid://15541504459",
@@ -1549,6 +1555,75 @@ spawn(function()
         end
     end
 end)
+
+--------// Sts \\----------------------------------------
+
+ST:AddToggle({
+    Name = "Melee",
+    Default = false,
+    Flag = "Auto Melee",
+    Save = true,
+    Callback = function(Value)
+        melee = Value
+    end    
+})
+
+ST:AddToggle({
+    Name = "Defense",
+    Default = false,
+    Flag = "Auto Defense",
+    Save = true,
+    Callback = function(Value)
+        defense = Value
+    end    
+})
+
+ST:AddToggle({
+    Name = "Sword",
+    Default = false,
+    Flag = "Auto Sword",
+    Save = true,
+    Callback = function(Value)
+        sword = Value
+    end    
+})
+
+ST:AddToggle({
+    Name = "Gun",
+    Default = false,
+    Flag = "Auto Gun",
+    Save = true,
+    Callback = function(Value)
+        gun = Value
+    end    
+})
+
+ST:AddToggle({
+    Name = "Devil Fruit",
+    Default = false,
+    Flag = "Auto Fruit",
+    Save = true,
+    Callback = function(Value)
+        demonfruit = Value
+    end    
+})
+
+PointStats = 1
+ST:AddSlider({
+    Name = "Point",
+    Min = 1,
+    Max = 2450,
+    Default = 1,
+    Color = Color3.fromRGB(255,255,255),
+    Increment = 1,
+    ValueName = "Point",
+    Flag = "Auto Point",
+    Save = true,
+    Callback = function(Value)
+        PointStats = Value
+    end    
+})
+
 
 
 
@@ -2381,6 +2456,53 @@ spawn(function()
             if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
                 local args = {
                     [1] = "Buso"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
+
+spawn(function()
+    while wait() do
+        if game.Players.localPlayer.Data.Points.Value >= PointStats then
+            if melee then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Melee",
+                    [3] = PointStats
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end 
+            if defense then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Defense",
+                    [3] = PointStats
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end 
+            if sword then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Sword",
+                    [3] = PointStats
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end 
+            if gun then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Gun",
+                    [3] = PointStats
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end 
+            if demonfruit then
+                local args = {
+                    [1] = "AddPoint",
+                    [2] = "Blox Fruit",
+                    [3] = PointStats
                 }
                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
             end
