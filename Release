@@ -2034,7 +2034,7 @@ end)
 spawn(function()
     while wait() do
         if _G.Farm and _G.SelectFarm == "Level" then
-            if MyLevel == 10 or MyLevel <= 15 then
+            if MyLevel >= 10 then
                 SkipLevel = true
                 wait(3)
                 _G.Farm = false
@@ -2088,7 +2088,7 @@ end)
 spawn(function()
     while wait() do
         if SkipLevel and Sea1 then
-            if game.Players.LocalPlayer.Data.Level.Value == 10 or game.Players.LocalPlayer.Data.Level.Value <= 15 then
+            if game.Players.LocalPlayer.Data.Level.Value >= 10 then
                 _G.Farm = false
                 SkipLevel = true
             end
