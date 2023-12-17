@@ -630,6 +630,69 @@ function QuestCheck()
         end
     end
 end
+
+function Hop()
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end
+        local num = 0;
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)
+            if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait()
+                    pcall(function()
+                        wait()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(4)
+                end
+            end
+        end
+    end
+    function Teleport() 
+        while wait() do
+            pcall(function()
+                TPReturner()
+                if foundAnything ~= "" then
+                    TPReturner()
+                end
+            end)
+        end
+    end
+    Teleport()
+end       
+
 function fly()
     local mouse=game:GetService("Players").LocalPlayer:GetMouse''
     localplayer=game:GetService("Players").LocalPlayer
@@ -1090,6 +1153,16 @@ spawn(function()
     end)
 end)
 
+function Check_Sword(Sword_Name)
+    for i, v in pairs(game:GetService("ReplicatedStorage").Remotes['CommF_']:InvokeServer("getInventory")) do
+        if (v.Type == "Sword") then
+            if v.Name == Sword_Name then
+                return true
+            end
+        end
+    end
+end
+
 game:GetService("Players").LocalPlayer.Idled:connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     wait(1)
@@ -1337,6 +1410,148 @@ G:AddToggle({
 	end    
 })
 
+--------// Item & Quest \\-------------------------------
+
+local Section = IQ:AddSection({
+	Name = "Saber"
+})
+
+ToggleSaber = G:AddToggle({
+	Name = "Auto Saber",
+	Default = false,
+    Flag = "Auto Saber",
+    Save = true,
+	Callback = function(Value)
+		_G.AutoSaber = Value
+        StopTween(_G.AutoSaber)
+	end    
+})
+
+spawn(function()
+    while wait() do
+        if _G.AutoSaber then
+            if MyLevel >= 200 and not Check_Sword("Saber") and Sea1 then
+                if game:GetService("Workspace").Map.Jungle.Final.Part.Transparency == 0 then
+                    if (CFrame.new(-1612.55884, 36.9774132, 148.719543).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+                        topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+                        wait(4)
+                        topos(game:GetService("Workspace").Map.Jungle.QuestPlates.Plate1.Button.CFrame)
+                        wait(4)
+                        topos(game:GetService("Workspace").Map.Jungle.QuestPlates.Plate2.Button.CFrame)
+                        wait(4)
+                        topos(game:GetService("Workspace").Map.Jungle.QuestPlates.Plate3.Button.CFrame)
+                        wait(4)
+                        topos(game:GetService("Workspace").Map.Jungle.QuestPlates.Plate4.Button.CFrame)
+                        wait(4)
+                        topos(game:GetService("Workspace").Map.Jungle.QuestPlates.Plate5.Button.CFrame)
+                        wait(4)
+                    else
+                        topos(CFrame.new(-1612.55884, 36.9774132, 148.719543))
+                    end
+                else
+                    if game:GetService("Workspace").Map.Desert.Burn.Part.Transparency == 0 then
+                        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Torch") or game.Players.LocalPlayer.Character:FindFirstChild("Torch") then
+                            EquipWeapon("Torch")
+                            topos(CFrame.new(1114.61475, 5.04679728, 4350.22803))
+                          else
+                          topos(CFrame.new(-1610.00757, 11.5049858, 164.001587))
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","SickMan") ~= 0 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","GetCup")
+                            wait(0.5)
+                            EquipWeapon("Cup")
+                            wait(0.5)
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","FillCup",game:GetService("Players").LocalPlayer.Character.Cup)
+                            wait(0)
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","SickMan")
+                        else
+                            if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon") == nil then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon")
+                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon") == 0 then
+                                if game:GetService("Workspace").Enemies:FindFirstChild("Mob Leader") or game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader [Lv. 120] [Boss]") then
+                                    topos(CFrame.new(-2967.59521, -4.91089821, 5328.70703)) 
+                                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                            if v.Name == "Mob Leader" then
+                                               if game:GetService("Workspace").Enemies:FindFirstChild("Mob Leader") then
+                                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                                    repeat task.wait()
+                                                    TurnOnBuso()
+                                                    EquipWeapon(_G.SelectWeapon)
+                                                    v.HumanoidRootPart.CanCollide = false
+                                                    v.Humanoid.WalkSpeed = 0
+                                                    v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                                    topos(v.HumanoidRootPart.CFrame * Pos)
+                                                    game:GetService("VirtualUser"):CaptureController()
+                                                    game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                                    sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                                    until v.Humanoid.Health <= 0 or not _G.Auto_Saber
+                                                 end
+                                            end
+                                            if game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader") then
+                                                topos(game:GetService("ReplicatedStorage"):FindFirstChild("Mob Leader").HumanoidRootPart.CFrame * CFrame.new(2, 20, 2))
+                                            end
+                                        end
+                                    end
+                                end
+                            elseif game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon") == 1 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","RichSon")
+                                wait(0.5)
+                                EquipWeapon("Relic")
+                                wait(0.5)
+                                topos(CFrame.new(-1404.91504, 29.9773273, 3.80598116))
+                            end
+                        end
+                    end
+                end
+            else
+            if game:GetService("Workspace").Enemies:FindFirstChild("Saber Expert") or game:GetService("ReplicatedStorage"):FindFirstChild("Saber Expert") then
+                topos(CFrame.new(-1401.85046, 29.9773273, 8.81916237))
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                        if v.Name == "Saber Expert" then
+                            repeat task.wait()
+                                TurnOnBuso()
+                                EquipWeapon(_G.SelectWeapon)
+                                topos(v.HumanoidRootPart.CFrame * Pos)
+                                v.HumanoidRootPart.Size = Vector3.new(80, 80, 80)
+                                v.HumanoidRootPart.Transparency = 1
+                                v.Humanoid.JumpPower = 0
+                                v.Humanoid.WalkSpeed = 0
+                                v.HumanoidRootPart.CanCollide = false
+                                --v.Humanoid:ChangeState(11)
+                                --v.Humanoid:ChangeState(14)
+                                FarmPos = v.HumanoidRootPart.CFrame
+                                MonFarm = v.Name
+                                game:GetService'VirtualUser':CaptureController()
+                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),workspace.CurrentCamera.CFrame)
+                            until v.Humanoid.Health <= 0 or not _G.AutoSaber
+                            if v.Humanoid.Health <= 0 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ProQuestProgress","PlaceRelic")
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+end)
+
+spawn(function()
+    while wait() do
+        if _G.SaberHop then
+            if not game:GetService("ReplicatedStorage"):FindFirstChild("Saber Expert") then
+                Hop()
+            else
+                ToggleSaber:Set(true)
+            end
+        end
+    end
+end)
+
+
+
 ---------// Sea Event \\----------------------------------
 
 local Section = E:AddSection({
@@ -1457,33 +1672,6 @@ E:AddToggle({
         StopTween(_G.KillPiranha)
 	end    
 })
-
-local Section = E:AddSection({
-	Name = "Kistune Event"
-})
-
-E:AddToggle({
-	Name = "Teleport to Kistune Island",
-	Default = false,
-    Flag = "Teleport to Kistune Island",
-    Save = true,
-	Callback = function(Value)
-		_G.TeleportEmberTemplate = Value
-        StopTween(_G.TeleportEmberTemplate)
-	end    
-})
-
-spawn(function()
-    while wait() do
-        if _G.TeleportEmberTemplate then
-            for i,v in pairs(game.ReplicatedStorage.Controllers.BlueMoonClient.EmberTemplate:GetChildren()) do
-                if v.Name == "Part" then
-                    topos(v.CFrame * CFrame.new(2, 40, 2))
-                end
-            end
-        end
-    end
-end)
 
 --------// Settings \\------------------------------------
 
@@ -2261,3 +2449,16 @@ spawn(function()
         end
     end
 end)
+
+if game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+    for i, v in pairs(
+        getconnections(
+            game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated
+        )
+    ) do
+        for a, b in pairs(getconnections(game:GetService("UserInputService").TouchTapInWorld)) do
+            b:Fire()
+        end
+        v.Function()
+    end
+end
