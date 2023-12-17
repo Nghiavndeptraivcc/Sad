@@ -1416,7 +1416,7 @@ local Section = IQ:AddSection({
 	Name = "Saber"
 })
 
-ToggleSaber = G:AddToggle({
+ToggleSaber = IQ:AddToggle({
 	Name = "Auto Saber",
 	Default = false,
     Flag = "Auto Saber",
