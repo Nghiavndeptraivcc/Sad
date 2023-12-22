@@ -1066,6 +1066,9 @@ I:AddLabel("Fix Kill Players")
 
 ---// Kuttay \\----------
 
+KT:AddParagraph("Warning","EN :  If You Click To Toggle Start Kaitun You May Have Your Hands Cut Off")
+KT:AddParagraph("Warning","EN :  Nếu Bạn Click To Toggle Start Kaitun Bạn Có Thể Bị Chặt Tay")
+
 KT:AddToggle({
 	Name = "Start Kaitun",
 	Default = false,
@@ -1088,7 +1091,7 @@ KT:AddToggle({
 })
 
 ----// Settings & Item \\--------
-G:AddToggle({
+ST:AddToggle({
 	Name = "Auto Saber",
 	Default = false,
     Flag = "Auto Saber",
@@ -1099,7 +1102,7 @@ G:AddToggle({
 	end    
 })
 
-G:AddToggle({
+ST:AddToggle({
 	Name = "Auto Pole",
 	Default = false,
     Flag = "Auto Pole",
@@ -1110,7 +1113,7 @@ G:AddToggle({
 	end    
 })
 
-G:AddToggle({
+ST:AddToggle({
 	Name = "Auto Bartilo Quest",
 	Default = false,
     Flag = "Auto Bartilo Quest",
