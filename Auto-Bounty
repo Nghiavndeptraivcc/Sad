@@ -650,7 +650,7 @@ spawn(
     function()
         game:GetService("RunService").Heartbeat:Connect(
             function()
-                if Deococlip == true then
+                if NoClip == true then
                     if not game:GetService("Workspace"):FindFirstChild("LOL") then
                         local LOL = Instance.new("Part")
                         LOL.Name = "LOL"
@@ -675,7 +675,7 @@ spawn(
 spawn(
     function()
         while wait() do
-            if Deococlip == true then
+            if NoClip == true then
                 if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
@@ -692,7 +692,7 @@ spawn(
     function()
         game:GetService("RunService").Stepped:Connect(
             function()
-                if Deococlip == true then
+                if NoClip == true then
                     for _, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
                         if v:IsA("BasePart") then
                             v.CanCollide = false
@@ -726,6 +726,20 @@ spawn(
         end
     end
 )
+
+spawn(function()
+    while wait() do
+        if _G.AutoFarmBounty then
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
+                    BypassTP = false
+                else
+                    BypassTP = true
+                end
+            end)
+        end
+    end
+end)
 
 spawn(function()
     while wait() do
@@ -783,15 +797,18 @@ function Tween(Pos)
         TweenInfo.new(Distance / Speed, Enum.EasingStyle.Linear),
         {CFrame = Pos}
     ):Play()
+    NoClip = true
+    wait(Distance/Speed)
+    NoClip = false
 end
 
-function BTP(P1)
-    game.Players.LocalPlayer.Character.Head:Destroy()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+function BTP(P)
+	repeat wait(1)
+		game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+		task.wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+	until (P.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1500
 end
 
 spawn(
@@ -809,7 +826,6 @@ spawn(
 
 BypassTP = true
 join = game.Players.localPlayer.Neutral == false
-Deococlip = true
 CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
 MansiontoCastlePos = CFrame.new(-12464.596679688, 376.30590820312, -7567.2626953125)
 Castletophydra = CFrame.new(-5095.33984375, 316.48101806641, -3168.3134765625)
