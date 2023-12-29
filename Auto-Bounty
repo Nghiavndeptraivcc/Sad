@@ -641,10 +641,12 @@ spawn(function()
     while wait() do
         pcall(function()
             if LetsGo then
+                _G.AutoFarmBounty = false
                 Tween(CFrame.new(999, 9999999, 99999))
                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                     print("wait end combat")
                 else
+                    _G.AutoFarmBounty = false
                     Hop()
                 end
             end
