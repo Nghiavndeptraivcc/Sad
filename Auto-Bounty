@@ -15,6 +15,283 @@ spawn(function()
     end)
 end)
 
+spawn(
+    function()
+        game:GetService("RunService").Stepped:Connect(
+            function()
+                if not donotdixuyentuong then
+                    if asasas then
+                        setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                        setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                        if
+                            game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and
+                                game.Players.LocalPlayer.Character.Humanoid.Sit
+                         then
+                            game.Players.LocalPlayer.Character.Humanoid.Sit = false
+                        end
+                        if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+                            setfflag("HumanoidParallelRemoveNoPhysics", "False")
+                            setfflag("HumanoidParallelRemoveNoPhysicsNoSimulate2", "False")
+                            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+                        end
+                    end
+                end
+                if NoClip then
+                    if not game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
+                        local ag = Instance.new("BodyVelocity")
+                        ag.Velocity = Vector3.new(0, 0, 0)
+                        ag.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+                        ag.P = 9000
+                        ag.Parent = game.Players.LocalPlayer.Character.Head
+                        for r, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                            if v:IsA("BasePart") then
+                                v.CanCollide = false
+                            end
+                        end
+                    end
+                elseif not NoClip and game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity") then
+                    game.Players.LocalPlayer.Character.Head:FindFirstChild("BodyVelocity"):Destroy()
+                end
+            end
+        )
+    end
+)
+function GetWeapon(bh)
+    s = ""
+    for r, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") and v.ToolTip == bh then
+            s = v.Name
+        end
+    end
+    for r, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA("Tool") and v.ToolTip == bh then
+            s = v.Name
+        end
+    end
+    return s
+end
+function equipweapon(aq)
+    local c6 = tostring(aq)
+    local c7 = game.Players.LocalPlayer.Backpack:FindFirstChild(c6)
+    local c8 =
+        game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") or
+        game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+    if c7 then
+        c8:EquipTool(c7)
+    end
+end
+function EquipWeapon(ToolSe)
+    if gggggg then
+        return
+    end
+    if lonmemayto == "" or lonmemayto == nil then
+        lonmemayto = "Melee"
+    end
+    ToolSe = GetWeapon(lonmemayto)
+    if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+        NoClip = true
+        local bi = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
+        wait(.4)
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(bi)
+        NoClip = false
+    end
+end
+function EquipWeaponName(m)
+    if not m then
+        return
+    end
+    NoClip = true
+    ToolSe = m
+    if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+        local bi = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
+        wait(.4)
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(bi)
+    end
+end
+function NameMelee()
+    for r, v in next, game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+        if v:IsA("Tool") and v.ToolTip == "Melee" then
+            return v.Name
+        end
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.Character:GetChildren() do
+        if v:IsA("Tool") and v.ToolTip == "Melee" then
+            return v.Name
+        end
+    end
+end
+function NameSword()
+    for r, v in next, game:GetService("Players").LocalPlayer.Backpack:GetChildren() do
+        if v:IsA("Tool") and v.ToolTip == "Sword" then
+            return v.Name
+        end
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.Character:GetChildren() do
+        if v:IsA("Tool") and v.ToolTip == "Sword" then
+            return v.Name
+        end
+    end
+end
+function NameGun()
+    dick = game.Players.LocalPlayer.Backpack or game.Players.LocalPlayer.Character
+    for r, v in pairs(dick:GetChildren()) do
+        if v:IsA("Tool") and v.ToolTip == "Gun" then
+            return v.Name
+        end
+    end
+end
+function checkskillMelee()
+    if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills:FindFirstChild(NameMelee()) then
+        equipweapon(NameMelee())
+        return false
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[NameMelee()]:GetChildren() do
+        if v:IsA("Frame") then
+            if
+                v.Name ~= "Template" and v.Title.TextColor3 == Color3.new(1, 1, 1) and
+                    v.Cooldown.Size == UDim2.new(0, 0, 1, -1) or
+                    v.Cooldown.Size == UDim2.new(1, 0, 1, -1)
+             then
+                return v.Name
+            end
+        end
+    end
+end
+function checkskillDF()
+    if
+        not game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills:FindFirstChild(
+            game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
+        )
+     then
+        equipweapon(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value)
+        return false
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[
+        game:GetService("Players").LocalPlayer.Data.DevilFruit.Value
+    ]:GetChildren() do
+        if v:IsA("Frame") then
+            if
+                v.Name ~= "Template" and v.Title.TextColor3 == Color3.new(1, 1, 1) and
+                    v.Cooldown.Size == UDim2.new(0, 0, 1, -1) or
+                    v.Cooldown.Size == UDim2.new(1, 0, 1, -1)
+             then
+                return v.Name
+            end
+        end
+    end
+end
+function checkskillSword()
+    if not NameSword() then
+        return
+    end
+    if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills:FindFirstChild(NameSword()) then
+        equipweapon(NameSword())
+        return false
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[NameSword()]:GetChildren() do
+        if v:IsA("Frame") then
+            if
+                v.Name ~= "Template" and v.Title.TextColor3 == Color3.new(1, 1, 1) and
+                    v.Cooldown.Size == UDim2.new(0, 0, 1, -1) or
+                    v.Cooldown.Size == UDim2.new(1, 0, 1, -1)
+             then
+                return v.Name
+            end
+        end
+    end
+end
+function checkskillGun()
+    if not NameGun() then
+        return nil
+    end
+    if not game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills:FindFirstChild(NameGun()) then
+        equipweapon(NameGun())
+        return false
+    end
+    for r, v in next, game:GetService("Players").LocalPlayer.PlayerGui.Main.Skills[NameGun()]:GetChildren() do
+        if v:IsA("Frame") then
+            if
+                v.Name ~= "Template" and v.Title.TextColor3 == Color3.new(1, 1, 1) and
+                    v.Cooldown.Size == UDim2.new(0, 0, 1, -1) or
+                    v.Cooldown.Size == UDim2.new(1, 0, 1, -1)
+             then
+                return v.Name
+            end
+        end
+    end
+end
+function IsWpSKillLoaded(bW)
+    if game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Skills:FindFirstChild(bW) then
+        return true
+    end
+end
+function EquipAllWeapon()
+    u3 = {"Melee", "Blox Fruit", "Sword", "Gun"}
+    u3_2 = {}
+    for r, v in pairs(u3) do
+        u3_3 = GetWeapon(v)
+        table.insert(u3_2, u3_3)
+    end
+    for r, v in pairs(u3_2) do
+        if not IsWpSKillLoaded(v) then
+            print(v)
+            EquipWeaponName(v)
+        end
+    end
+end
+function SendKey(c9, ca)
+    if c9 then
+        if not ca then
+            game:service("VirtualInputManager"):SendKeyEvent(true, c9, false, game)
+            task.wait()
+            game:service("VirtualInputManager"):SendKeyEvent(false, c9, false, game)
+        elseif ca then
+            game:service("VirtualInputManager"):SendKeyEvent(true, c9, false, game)
+            task.wait(ca)
+            game:service("VirtualInputManager"):SendKeyEvent(false, c9, false, game)
+        end
+    end
+end
+function autoskill()
+    sword = checkskillSword()
+    meele = checkskillMelee()
+    DF = checkskillDF()
+    gun = checkskillGun()
+    if
+        DF and not string.find(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value, "Portal") and
+            DF ~= "F"
+     then
+        print("Devil Fruit")
+        EquipWeaponName(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value)
+        local condimebeo = checkskillDF()
+        if condimebeo then
+            SendKey(condimebeo)
+        end
+    elseif checkskillMelee() and Melee then
+        print("Melee")
+        EquipWeaponName(NameMelee())
+        local condimebeo = checkskillMelee()
+        if condimebeo then
+            SendKey(condimebeo)
+        end
+    elseif checkskillSword() and Sword then
+        print("Sword")
+        EquipWeaponName(NameSword())
+        local condimebeo = checkskillSword()
+        if condimebeo then
+            SendKey(condimebeo)
+        end
+    elseif checkskillGun() and Gun then
+        print("Gun")
+        EquipWeaponName(NameGun())
+        if condimebeo then
+            SendKey(condimebeo)
+        end
+    else
+        EquipAllWeapon()
+    end
+end
+
 
 spawn(function()
 pcall(function()
@@ -92,41 +369,6 @@ spawn(
     end
 )
 
-	function Tween(P1)
-		Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-		if Distance < 250 then
-			Speed = 600
-		elseif Distance < 500 then
-			Speed = 400
-		elseif Distance < 1000 then
-			Speed = 350
-		elseif Distance >= 1000 then
-			Speed = 200
-		end
-		game:GetService("TweenService"):Create(
-			game.Players.LocalPlayer.Character.HumanoidRootPart,
-			TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-			{CFrame = P1}
-		):Play()
-	end
-	
-	function Tween(P1)
-		Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-		if Distance < 1000 then
-			Speed = 400
-		elseif Distance >= 1000 then
-			Speed = 250
-		end
-		game:GetService("TweenService"):Create(
-			game.Players.LocalPlayer.Character.HumanoidRootPart,
-			TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
-			{CFrame = P1}
-		):Play()
-		Deococlip = true
-		wait(Distance/Speed)
-		Deococlip = false
-	end
-
 spawn(function()
 while wait() do
 pcall(function()
@@ -138,6 +380,30 @@ end
 end)
 end
 end)
+
+function Tween(Pos)
+    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if Distance < 25 then
+        Speed = 5000
+    elseif Distance < 50 then
+        Speed = 2000
+    elseif Distance < 150 then
+        Speed = 800
+    elseif Distance < 250 then
+        Speed = 600
+    elseif Distance < 500 then
+        Speed = 300
+    elseif Distance < 750 then
+        Speed = 275
+    elseif Distance >= 1000 then
+        Speed = 250
+    end
+    game:GetService("TweenService"):Create(
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = Pos}
+    ):Play()
+end
 
 local Delay = 1
 
@@ -165,21 +431,11 @@ end
 spawn(function()
 if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 150 then
     spawn(function()
-        repeat task.wait()
-    Melee()
-    SY()
-    SC()
-    SZ()
-    SX()
-    wait(1)
-    Sword()
-    SZ()
-    SX()
-    wait(1)
-    Gun()
-    SZ()
-    SX()
-        until v.Humanoid.Health <= 0 or not v:FindFirstChild("HumanoidRootPart") or not v:FindFirstChild("Humanoid") or not v.Parent
+        autoskill()
+        Melee = true
+        Sword = true
+        DF = true
+        Gun = true
     end)
 end
 end)
@@ -194,64 +450,6 @@ end
 end
 end)
 end
-end)
-
-function Melee()
-for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-    if v:IsA("Tool") then
-        if v.ToolTip == "Melee" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
-            game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-        end
-    end
-end
-end
-function Sword()
-    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-        if v:IsA("Tool") then
-            if v.ToolTip == "Sword" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
-                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-            end
-        end
-    end
-    end
-    function Gun()
-        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-            if v:IsA("Tool") then
-                if v.ToolTip == "Gun" then -- "Blox Fruit" , "Sword" , "Wear" , "Agility"
-                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-                end
-            end
-        end
-        end
-
-        function SY()
-            game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
-            game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
-        end
-
-function SZ()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,"Z",false,game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false,"Z",false,game)
-end
-
-function SX()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,"X",false,game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false,"X",false,game)
-end
-
-function SC()
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,"C",false,game)
-    game:GetService("VirtualInputManager"):SendKeyEvent(false,"C",false,game)
-end
-spawn(function()
-pcall(function()
-while task.wait() do
-if _G.AutoFarmBounty then
-game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible = false
-game:GetService("Players").LocalPlayer.PlayerGui.Main.SafeZone.Visible = false
-end
-end
-end)
 end)
 
 spawn(function()
@@ -282,19 +480,4 @@ end
 end
 end
 end)
-end)
-
-spawn(function()
-while wait() do
-if _G.AutoFarmBounty then
-pcall(function()
-wait(150)
-Hop()
-Hop()
-Hop()
-Hop()
-Hop()
-end)
-end
-end
 end)
