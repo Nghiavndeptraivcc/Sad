@@ -702,8 +702,8 @@ spawn(
 
 spawn(function()
     while wait() do
-        pcall(function()
-            if _G.AutoFarmBounty then
+        if _G.AutoFarmBounty then
+            pcall(function()
                 for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Notifications:GetChildren()) do
                     if v.Name == "NotificationTemplate" then
                         if string.find(v.Text, "Players") or string.find(v.Text, "SafeZone") then
