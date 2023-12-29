@@ -1,4 +1,5 @@
 BypassTP = true
+LowHealth = 3000
 if game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
     for i, v in pairs(
         getconnections(
@@ -755,23 +756,6 @@ function BTP(P1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
     wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P1
-    wait(1)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
 end
 
@@ -823,10 +807,18 @@ spawn(
                                                     (game.Players.LocalPlayer.Character.HumanoidRootPart.Position -
                                                         v.HumanoidRootPart.Position).Magnitude <= 2000
                                                  then
-                                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                    if game:GetChildren("Players").LocalPlayer.Character.Humanoid.Health < LowHealth then
+                                                        Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 45, 2))
+                                                    elseif game:GetChildren("Players").LocalPlayer.Character.Humanoid.Health > LowHealth then
+                                                        Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                    end
                                                 end
                                             else
-                                                Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                if game:GetChildren("Players").LocalPlayer.Character.Humanoid.Health < LowHealth then
+                                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 45, 2))
+                                                elseif game:GetChildren("Players").LocalPlayer.Character.Humanoid.Health > LowHealth then
+                                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                end
                                             end
                                             spawn(
                                                 function()
