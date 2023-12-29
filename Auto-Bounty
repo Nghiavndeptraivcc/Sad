@@ -1,3 +1,4 @@
+BypassTP = true
 -- Function :
 function Hop()
     local PlaceID = game.PlaceId
@@ -6,32 +7,46 @@ function Hop()
     local actualHour = os.date("!*t").hour
     local Deleted = false
     function TPReturner()
-        local Site;
+        local Site
         if foundAnything == "" then
-            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+            Site =
+                game.HttpService:JSONDecode(
+                game:HttpGet(
+                    "https://games.roblox.com/v1/games/" .. PlaceID .. "/servers/Public?sortOrder=Asc&limit=100"
+                )
+            )
         else
-            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+            Site =
+                game.HttpService:JSONDecode(
+                game:HttpGet(
+                    "https://games.roblox.com/v1/games/" ..
+                        PlaceID .. "/servers/Public?sortOrder=Asc&limit=100&cursor=" .. foundAnything
+                )
+            )
         end
         local ID = ""
         if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
             foundAnything = Site.nextPageCursor
         end
-        local num = 0;
-        for i,v in pairs(Site.data) do
+        local num = 0
+        for i, v in pairs(Site.data) do
             local Possible = true
             ID = tostring(v.id)
             if tonumber(v.maxPlayers) > tonumber(v.playing) then
-                for _,Existing in pairs(AllIDs) do
+                for _, Existing in pairs(AllIDs) do
                     if num ~= 0 then
                         if ID == tostring(Existing) then
                             Possible = false
                         end
                     else
                         if tonumber(actualHour) ~= tonumber(Existing) then
-                            local delFile = pcall(function()
-                                AllIDs = {}
-                                table.insert(AllIDs, actualHour)
-                            end)
+                            local delFile =
+                                pcall(
+                                function()
+                                    AllIDs = {}
+                                    table.insert(AllIDs, actualHour)
+                                end
+                            )
                         end
                     end
                     num = num + 1
@@ -39,23 +54,31 @@ function Hop()
                 if Possible == true then
                     table.insert(AllIDs, ID)
                     wait()
-                    pcall(function()
-                        wait()
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                    end)
+                    pcall(
+                        function()
+                            wait()
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(
+                                PlaceID,
+                                ID,
+                                game.Players.LocalPlayer
+                            )
+                        end
+                    )
                     wait(4)
                 end
             end
         end
     end
-    function Teleport() 
+    function Teleport()
         while wait() do
-            pcall(function()
-                TPReturner()
-                if foundAnything ~= "" then
+            pcall(
+                function()
                     TPReturner()
+                    if foundAnything ~= "" then
+                        TPReturner()
+                    end
                 end
-            end)
+            )
         end
     end
     Teleport()
@@ -213,12 +236,14 @@ Total.Font = Enum.Font.SourceSansBold
 Total.Text = "Total Your Bounty : 0"
 Total.TextColor3 = Color3.fromRGB(255, 255, 255)
 Total.TextSize = 16.000
-spawn(function()
-    while wait() do
-        Total.Text = "Total Your Bounty :".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
+spawn(
+    function()
+        while wait() do
+            Total.Text =
+                "Total Your Bounty :" .. " " .. game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value
+        end
     end
-end)
-
+)
 
 Frame_5.Parent = ScreenGui
 Frame_5.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -237,11 +262,13 @@ TextButton.Font = Enum.Font.SourceSansBold
 TextButton.Text = "Next Players"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.TextSize = 16.000
-TextButton.MouseButton1Down:Connect(function()
-    NextplySelect = true
-    wait(0.5)
-    NextplySelect = false
-end)
+TextButton.MouseButton1Down:Connect(
+    function()
+        NextplySelect = true
+        wait(0.5)
+        NextplySelect = false
+    end
+)
 
 UICorner_5.Parent = TextButton
 
@@ -256,9 +283,11 @@ TextButton_2.Text = "Hop Servers"
 TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_2.TextSize = 16.000
 TextButton_2.TextWrapped = true
-TextButton_2.MouseButton1Down:Connect(function()
-    LetsGo = true
-end)
+TextButton_2.MouseButton1Down:Connect(
+    function()
+        LetsGo = true
+    end
+)
 
 UICorner_6.Parent = TextButton_2
 
@@ -273,18 +302,32 @@ Frame_6.Size = UDim2.new(0, 1, 0, 51)
 
 _G.AutoFarmBounty = true
 
-spawn(function()
-    pcall(function()
-        game:GetService("RunService").RenderStepped:connect(function()
-            if _G.AutoFarmBounty and TargetPlayerAim ~= nil and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name]:FindFirstChild("MousePos") then
-                local args = {
-                    [1] = game:GetService("Players"):FindFirstChild(TargetPlayerAim).Character.HumanoidRootPart.Position
-                }
-                game:GetService("Players").LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name].RemoteEvent:FireServer(unpack(args))
+spawn(
+    function()
+        pcall(
+            function()
+                game:GetService("RunService").RenderStepped:connect(
+                    function()
+                        if
+                            _G.AutoFarmBounty and TargetPlayerAim ~= nil and
+                                game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and
+                                game.Players.LocalPlayer.Character[
+                                    game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name
+                                ]:FindFirstChild("MousePos")
+                         then
+                            local args = {
+                                [1] = game:GetService("Players"):FindFirstChild(TargetPlayerAim).Character.HumanoidRootPart.Position
+                            }
+                            game:GetService("Players").LocalPlayer.Character[
+                                game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name
+                            ].RemoteEvent:FireServer(unpack(args))
+                        end
+                    end
+                )
             end
-        end)
-    end)
-end)
+        )
+    end
+)
 
 spawn(
     function()
@@ -528,10 +571,7 @@ function autoskill()
     meele = checkskillMelee()
     DF = checkskillDF()
     gun = checkskillGun()
-    if
-        DF and not string.find(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value, "Portal") and
-            DF ~= "F"
-     then
+    if DF and not string.find(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value, "Portal") and DF ~= "F" then
         print("Devil Fruit")
         EquipWeaponName(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value)
         local condimebeo = checkskillDF()
@@ -563,26 +603,27 @@ function autoskill()
     end
 end
 
-
-spawn(function()
-pcall(function()
-if _G.AutoFarmBounty then
-while wait() do
-if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
-end
-end
-end
-end)
-end)
+spawn(
+    function()
+        pcall(
+            function()
+                if _G.AutoFarmBounty then
+                    while wait() do
+                        if game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+                        end
+                    end
+                end
+            end
+        )
+    end
+)
 
 spawn(
     function()
         game:GetService("RunService").Heartbeat:Connect(
             function()
-                if
-                Deococlip == true
-                 then
+                if Deococlip == true then
                     if not game:GetService("Workspace"):FindFirstChild("LOL") then
                         local LOL = Instance.new("Part")
                         LOL.Name = "LOL"
@@ -607,9 +648,7 @@ spawn(
 spawn(
     function()
         while wait() do
-            if
-            Deococlip == true
-             then
+            if Deococlip == true then
                 if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
@@ -626,9 +665,7 @@ spawn(
     function()
         game:GetService("RunService").Stepped:Connect(
             function()
-                if
-                    Deococlip == true
-                 then
+                if Deococlip == true then
                     for _, v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
                         if v:IsA("BasePart") then
                             v.CanCollide = false
@@ -640,34 +677,42 @@ spawn(
     end
 )
 
-spawn(function()
-    while wait() do
-        pcall(function()
-            if LetsGo then
-                _G.AutoFarmBounty = false
-                Tween(CFrame.new(999, 9999999, 99999))
-                if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
-                    print("wait end combat")
-                else
-                    _G.AutoFarmBounty = false
-                    Hop()
+spawn(
+    function()
+        while wait() do
+            pcall(
+                function()
+                    if LetsGo then
+                        _G.AutoFarmBounty = false
+                        Tween(CFrame.new(999, 9999999, 99999))
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
+                            print("wait end combat")
+                        else
+                            _G.AutoFarmBounty = false
+                            Hop()
+                        end
+                    end
                 end
-            end
-        end)
+            )
+        end
     end
-end)
+)
 
-spawn(function()
-while wait() do
-pcall(function()
-if _G.AutoFarmBounty then
-if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
-end
-end
-end)
-end
-end)
+spawn(
+    function()
+        while wait() do
+            pcall(
+                function()
+                    if _G.AutoFarmBounty then
+                        if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+                        end
+                    end
+                end
+            )
+        end
+    end
+)
 
 function Tween(Pos)
     Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -688,7 +733,7 @@ function Tween(Pos)
     end
     game:GetService("TweenService"):Create(
         game:GetService("Players").LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        TweenInfo.new(Distance / Speed, Enum.EasingStyle.Linear),
         {CFrame = Pos}
     ):Play()
 end
@@ -718,7 +763,6 @@ function BTP(P1)
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
 end
 
-
 spawn(
     function()
         game:GetService("RunService").RenderStepped:Connect(
@@ -732,92 +776,135 @@ spawn(
     end
 )
 
+join = game.Players.localPlayer.Neutral == false
 Deococlip = true
 CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
 MansiontoCastlePos = CFrame.new(-12464.596679688, 376.30590820312, -7567.2626953125)
 Castletophydra = CFrame.new(-5095.33984375, 316.48101806641, -3168.3134765625)
 HydratoCastle = CFrame.new(5741.869140625, 611.94750976562, -282.61154174805)
-spawn(function()
-while wait() do
-pcall(function()
-if _G.AutoFarmBounty then
-for i,v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
-if v.Name ~= game.Players.LocalPlayer.Name then
-if v.Humanoid.Health > 0 and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude <= 17000 then
-plyselecthunthelpold = v.Humanoid.Health
-repeat task.wait()
-TietCanh = v.Humanoid.Health
-NameTarget = v.Name
-if BypassTP then
-    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude >= 2000 then
-        BTP(v.HumanoidRootPart.CFrame)
-    elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude <= 2000 then
-        Tween(v.HumanoidRootPart.CFrame * CFrame.new(2,12,2))
-    end
-else
-    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2,12,2))
-end
-spawn(function()
-if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 150 then
-    spawn(function()
-        autoskill()
-        Melee = true
-        Sword = true
-        DF = true
-        Gun = true
-        _G.AutoClick = true
-    end)
-end
-end)
-v.HumanoidRootPart.CanCollide = false
-TargetSelectHunt = v.Humanoid
-until _G.AutoFarmBounty == false or v.Humanoid.Health == 0 or not v:FindFirstChild("HumanoidRootPart") or not v:FindFirstChild("Humanoid") or not v.Parent or NextplySelect == true
-NextplySelect = false
-StartCheckTarget = false
-end
-end
-end
-end
-end)
-end
-end)
-
-spawn(function()
-    while wait() do
-        if TietCanh <= 0 then
-            NextplySelect = true
-            wait(0.5)
-            NextplySelect = false
+spawn(
+    function()
+        while wait() do
+            pcall(
+                function()
+                    if _G.AutoFarmBounty then
+                        if join == true then
+                            for i, v in pairs(game:GetService("Workspace").Characters:GetChildren()) do
+                                if v.Name ~= game.Players.LocalPlayer.Name then
+                                    if
+                                        v.Humanoid.Health > 0 and
+                                            (game.Players.LocalPlayer.Character.HumanoidRootPart.Position -
+                                                v.HumanoidRootPart.Position).Magnitude <= 17000
+                                     then
+                                        plyselecthunthelpold = v.Humanoid.Health
+                                        repeat
+                                            task.wait()
+                                            TietCanh = v.Humanoid.Health
+                                            NameTarget = v.Name
+                                            if BypassTP then
+                                                if
+                                                    (game.Players.LocalPlayer.Character.HumanoidRootPart.Position -
+                                                        v.HumanoidRootPart.Position).Magnitude >= 2000
+                                                 then
+                                                    BTP(v.HumanoidRootPart.CFrame)
+                                                elseif
+                                                    (game.Players.LocalPlayer.Character.HumanoidRootPart.Position -
+                                                        v.HumanoidRootPart.Position).Magnitude <= 2000
+                                                 then
+                                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                end
+                                            else
+                                                Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                            end
+                                            spawn(
+                                                function()
+                                                    if
+                                                        (v.HumanoidRootPart.Position -
+                                                            game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <=
+                                                            150
+                                                     then
+                                                        spawn(
+                                                            function()
+                                                                autoskill()
+                                                                Melee = true
+                                                                Sword = true
+                                                                DF = true
+                                                                Gun = true
+                                                                _G.AutoClick = true
+                                                            end
+                                                        )
+                                                    end
+                                                end
+                                            )
+                                            v.HumanoidRootPart.CanCollide = false
+                                            TargetSelectHunt = v.Humanoid
+                                        until _G.AutoFarmBounty == false or v.Humanoid.Health == 0 or
+                                            not v:FindFirstChild("HumanoidRootPart") or
+                                            not v:FindFirstChild("Humanoid") or
+                                            not v.Parent or
+                                            NextplySelect == true
+                                        NextplySelect = false
+                                        StartCheckTarget = false
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            )
         end
     end
-end)
+)
 
-spawn(function()
-pcall(function()
-while wait() do
-if _G.AutoFarmBounty then
-if TargetSelectHunt ~= nil then
-if StartCheckTarget then
-wait(6.5)
-if TargetSelectHunt.Health == TargetSelectHunt.MaxHealth or TargetSelectHunt.Health >= plyselecthunthelpold then
-NextplySelect = true
-TargetSelectHunt = nil
-end
-end
-end
-end
-end
-end)
-end)
+spawn(
+    function()
+        while wait() do
+            if TietCanh <= 0 then
+                NextplySelect = true
+                wait(0.5)
+                NextplySelect = false
+            end
+        end
+    end
+)
 
-spawn(function()
-pcall(function()
-while wait(.1) do
-if _G.AutoFarmBounty then
-if game:GetService("Players").LocalPlayer.PlayerGui.Main.PvpDisabled.Visible == true then
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EnablePvp")
-end
-end
-end
-end)
-end)
+spawn(
+    function()
+        pcall(
+            function()
+                while wait() do
+                    if _G.AutoFarmBounty then
+                        if TargetSelectHunt ~= nil then
+                            if StartCheckTarget then
+                                wait(6.5)
+                                if
+                                    TargetSelectHunt.Health == TargetSelectHunt.MaxHealth or
+                                        TargetSelectHunt.Health >= plyselecthunthelpold
+                                 then
+                                    NextplySelect = true
+                                    TargetSelectHunt = nil
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        )
+    end
+)
+
+spawn(
+    function()
+        pcall(
+            function()
+                while wait(.1) do
+                    if _G.AutoFarmBounty then
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.PvpDisabled.Visible == true then
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EnablePvp")
+                        end
+                    end
+                end
+            end
+        )
+    end
+)
