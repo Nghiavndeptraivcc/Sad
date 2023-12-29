@@ -1,4 +1,4 @@
-BypassTP = true
+
 -- Function :
 function Hop()
     local PlaceID = game.PlaceId
@@ -684,11 +684,13 @@ spawn(
                 function()
                     if LetsGo then
                         _G.AutoFarmBounty = false
+                        BypassTP = false
                         Tween(CFrame.new(999, 9999999, 99999))
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                             print("wait end combat")
                         else
                             _G.AutoFarmBounty = false
+                            BypassTP = false
                             Hop()
                         end
                     end
@@ -697,6 +699,24 @@ spawn(
         end
     end
 )
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if _G.AutoFarmBounty then
+                for i, v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Notifications:GetChildren()) do
+                    if v.Name == "NotificationTemplate" then
+                        if string.find(v.Text, "Players") or string.find(v.Text, "SafeZone") then
+                            NextplySelect = true
+                            wait(0.5)
+                            NextplySelect = false
+                        end
+                    end
+                end
+            end)
+        end
+    end
+end)
 
 spawn(
     function()
@@ -760,6 +780,7 @@ spawn(
     end
 )
 
+BypassTP = true
 join = game.Players.localPlayer.Neutral == false
 Deococlip = true
 CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
