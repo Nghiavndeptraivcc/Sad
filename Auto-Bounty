@@ -772,7 +772,7 @@ end
 end)
 end)
 
-spawn(functio()
+spawn(function()
     while wait() do
         if _G.AutoFarmBounty then
             pcall(function()
