@@ -10,6 +10,22 @@ if game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
         v.Function()
     end
 end
+spawn(
+    function()
+        while wait() do
+                repeat
+                    task.wait()
+                    if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
+                        game:GetService("VirtualUser"):CaptureController()
+                        game:GetService("VirtualUser"):SetKeyDown("0x65")
+                        wait(2)
+                        game:GetService("VirtualUser"):SetKeyUp("0x65")
+                    end
+                until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") or
+                    not _G.KillV4
+        end
+    end
+)
 -- Function :
 function Hop()
     local PlaceID = game.PlaceId
