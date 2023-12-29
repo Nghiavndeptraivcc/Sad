@@ -405,8 +405,8 @@ function Tween(Pos)
     ):Play()
 end
 
-local Delay = 1
 
+Deococlip = true
 CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
 MansiontoCastlePos = CFrame.new(-12464.596679688, 376.30590820312, -7567.2626953125)
 Castletophydra = CFrame.new(-5095.33984375, 316.48101806641, -3168.3134765625)
