@@ -254,7 +254,7 @@ TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_2.TextSize = 16.000
 TextButton_2.TextWrapped = true
 TextButton_2.MouseButton1Down:Connect(function()
-    Hop()
+    LetsGo = true
 end)
 
 UICorner_6.Parent = TextButton_2
@@ -638,6 +638,21 @@ spawn(
 )
 
 spawn(function()
+    while wait() do
+        pcall(function()
+            if LetsGo then
+                Tween(CFrame.new(999, 9999999, 99999))
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
+                    print("wait end combat")
+                else
+                    Hop()
+                end
+            end
+        end)
+    end
+end)
+
+spawn(function()
 while wait() do
 pcall(function()
 if _G.AutoFarmBounty then
@@ -689,6 +704,8 @@ if v:WaitForChild("Humanoid").Health > 0 and (game.Players.LocalPlayer.Character
 plyselecthunthelpold = v.Humanoid.Health
 repeat task.wait()
 NameTarget = v.Name
+Miku = v.Head.Position
+workspace.CurrentCamera.CFrame = CFrame.new(workspace.CurrentCamera.CFrame.Position, Miku + workspace.CurrentCamera.CFrame.Position)
 if tostring(game.Players.LocalPlayer.Team) == "Pirates" then
 Tween(v.HumanoidRootPart.CFrame * CFrame.new(2,12,2))
 elseif tostring(game.Players.LocalPlayer.Team) == "Marines" then
