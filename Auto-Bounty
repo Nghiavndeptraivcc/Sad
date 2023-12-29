@@ -16,15 +16,15 @@ getgenv().Setting = {
         ["Near-Island Max Distance"] = 7000
     },
     ["Chat"] = {
-        ["Enable"] = true,
-        ["Content"] = "I Got Night Hub Bounty Hunting Script"
+        ["Enable"] = false,
+        ["Content"] = "Config By LMNGAMING"
     },
     ["Misc"] = {
         ["Hold Until Max Skill Preserve"] = false,
         ["Tweening On HoldTime"] = false,
         ["Silent Mode"] = true,
         ["Hide If Low Health"] = true,
-        ["Low Health | Max Health"] = {3000, 4000},
+        ["Hiding Health"] = {4000, 8000},
         ["V4"] = true,
         ["LockCamera"] = true,
         ["FPSBoost"] = false,
@@ -49,9 +49,9 @@ getgenv().Setting = {
             ["Delay"] = 6,
             ["Skills"] = {
                 ["Z"] = {["Enable"] = true, ["HoldTime"] = 0},
-                ["X"] = {["Enable"] = false, ["HoldTime"] = 0},
-                ["C"] = {["Enable"] = false, ["HoldTime"] = 0},
-                ["V"] = {["Enable"] = false, ["HoldTime"] = 0},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0},
+                ["C"] = {["Enable"] = true, ["HoldTime"] = 0},
+                ["V"] = {["Enable"] = true, ["HoldTime"] = .25},
                 ["F"] = {["Enable"] = false, ["HoldTime"] = 0}
             }
         },
@@ -59,8 +59,8 @@ getgenv().Setting = {
             ["Enable"] = true,
             ["Delay"] = 4,
             ["Skills"] = {
-                ["Z"] = {["Enable"] = true, ["HoldTime"] = 0},
-                ["X"] = {["Enable"] = true, ["HoldTime"] = 0}
+                ["Z"] = {["Enable"] = true, ["HoldTime"] = .8},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = .2}
             }
         },
         ["Gun"] = {
@@ -68,7 +68,7 @@ getgenv().Setting = {
             ["Delay"] = .1,
             ["Skills"] = {
                 ["Z"] = {["Enable"] = true, ["HoldTime"] = 0},
-                ["X"] = {["Enable"] = true, ["HoldTime"] = 0}
+                ["X"] = {["Enable"] = false, ["HoldTime"] = 0}
             }
         }
     }
@@ -1357,7 +1357,7 @@ while task.wait() do
 
             if
                 Setting.Misc["Hide If Low Health"] and health > 0 and
-                    (health < Setting.Misc["Low Health | Max Health"][1] or (hide and health < Setting.Misc["Low Health | Max Health"][2]))
+                    (health < Setting.Misc["Hiding Health"][1] or (hide and health < Setting.Misc["Hiding Health"][2]))
              then
                 hide = true
                 to(am2(uwu).CFrame + Vector3.new(0, 9999, 0))
