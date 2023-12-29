@@ -773,18 +773,6 @@ end)
 end)
 
 spawn(function()
-    while wait() do
-        if _G.AutoFarmBounty then
-            pcall(function()
-            if not TargetSelectHunt then
-                LetsGo = true
-                end
-            end)
-        end
-    end
-end)
-
-spawn(function()
 pcall(function()
 while wait(.1) do
 if _G.AutoFarmBounty then
