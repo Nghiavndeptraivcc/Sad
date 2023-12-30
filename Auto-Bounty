@@ -859,10 +859,10 @@ spawn(
                                                     (game.Players.LocalPlayer.Character.HumanoidRootPart.Position -
                                                         v.HumanoidRootPart.Position).Magnitude <= 2000
                                                  then
-                                                    Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                    Tween(math.random(-6, 6), math.random(0, 3), math.random(-6, 6))
                                                 end
                                             else
-                                                Tween(v.HumanoidRootPart.CFrame * CFrame.new(2, 12, 2))
+                                                Tween(math.random(-6, 6), math.random(0, 3), math.random(-6, 6))
                                             end
                                             spawn(
                                                 function()
