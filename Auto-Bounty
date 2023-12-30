@@ -249,7 +249,7 @@ earned = tonumber(lp.leaderstats["Bounty/Honor"].Value) - tonumber(start_bounty)
 start_bounty = lp.leaderstats["Bounty/Honor"].Value
 if earned > 0 then
     LocalEarn = LocalEarn + earned
-    earned.Text = "Server Earned: " .. LocalEarn
+    Earned.Text = "Earned : " .. LocalEarn
 end
 
 Total.Name = "Total"
