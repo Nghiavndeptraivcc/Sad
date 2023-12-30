@@ -715,7 +715,7 @@ spawn(
                         Tween(CFrame.new(999, 9999999, 99999))
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                             print("wait end combat")
-                        else
+                        elseif not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                             Hop()
                             _G.AutoFarmBounty = false
                             BypassTP = false
