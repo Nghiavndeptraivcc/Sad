@@ -285,7 +285,6 @@ function target()
         getgenv().targ = nil
         getgenv().bounty = game.Players.LocalPlayer.leaderstats["Bounty/Honor"].Value
         for i, v in pairs(game.Players:GetPlayers()) do 
-          print("Attempt To Scanning: "..v)
             pcall(function() 
                 if game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1") and v:DistanceFromCharacter(game:GetService("Workspace")["_WorldOrigin"].Locations:FindFirstChild("Island 1").Position) < 5000 then
                     print("Player Is Raiding")
