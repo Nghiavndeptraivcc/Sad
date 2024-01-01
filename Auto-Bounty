@@ -923,6 +923,32 @@ spawn(
 
 spawn(
     function()
+        while wait() do
+            if _G.AutoFarmBounty then
+                pcall(
+                    function()
+                        if join == true then
+                            if not TargetSelectHunt then
+                                BypassTP = false
+                                if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
+                                    print("wait end combat")
+                                    Tween(CFrame.new(999, 9999999, 99999))
+                                elseif not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
+                                    Hop()
+                                    BypassTP = false
+                                    Tween(CFrame.new(999, 9999999, 99999))
+                                end
+                            end
+                        end
+                    end
+                )
+            end
+        end
+    end
+)
+
+spawn(
+    function()
         pcall(
             function()
                 while wait() do
