@@ -13,6 +13,7 @@ end
 spawn(
     function()
         while wait() do
+            if _G.Ken then
                 repeat
                     task.wait()
                     if not game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") then
@@ -22,7 +23,8 @@ spawn(
                         game:GetService("VirtualUser"):SetKeyUp("0x65")
                     end
                 until game:GetService("Players").LocalPlayer.PlayerGui.ScreenGui:FindFirstChild("ImageLabel") or
-                    not _G.KillV4
+                    not _G.Ken
+            end
         end
     end
 )
@@ -713,13 +715,14 @@ spawn(
                     if LetsGo then
                         _G.AutoFarmBounty = false
                         BypassTP = false
-                        Tween(CFrame.new(999, 9999999, 99999))
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                             print("wait end combat")
+                            Tween(CFrame.new(999, 9999999, 99999))
                         elseif not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                             Hop()
                             _G.AutoFarmBounty = false
                             BypassTP = false
+                            Tween(CFrame.new(999, 9999999, 99999))
                         end
                     end
                 end
@@ -734,7 +737,7 @@ spawn(function()
             pcall(function()
                 if game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                     BypassTP = false
-                else
+                elseif not game:GetService("Players").LocalPlayer.PlayerGui.Main.InCombat.Visible then
                     BypassTP = true
                 end
             end)
@@ -826,6 +829,7 @@ spawn(
 )
 
 BypassTP = true
+_G.Ken = true
 join = game.Players.localPlayer.Neutral == false
 CastlePostoMansion = CFrame.new(-5084.8447265625, 316.48101806641, -3145.3752441406)
 MansiontoCastlePos = CFrame.new(-12464.596679688, 376.30590820312, -7567.2626953125)
