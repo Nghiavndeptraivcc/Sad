@@ -2004,7 +2004,7 @@ Groups.Enabled_Bounty = Tabs.Main:AddLeftGroupbox(generateRandomString(10))
 Groups.Enabled_Bounty:AddToggle("AutoBounty", {
     Text = "Auto Bounty"
 }):AddKeyPicker("AutoBounty_Bind", {
-    Default = "End",
+    Default = "T",
     NoUI = true,
     SyncToggleState = true
 })
@@ -2012,7 +2012,7 @@ Groups.Enabled_Bounty:AddToggle("AutoBounty", {
 Groups.Enabled_Bounty:AddToggle("Spectate", {
     Text = "Spectate Target"
 }):AddKeyPicker("Spectate_Bind", {
-    Default = "Down",
+    Default = "Y",
     NoUI = true,
     SyncToggleState = true
 })
