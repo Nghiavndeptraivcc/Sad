@@ -97,8 +97,8 @@ function FastAttackConnectorFunction()
         UFFF = k 
     end
     FastAttackSettings = {
-        ["CDAAT"] = 80,
-        ["TimeWait"] = 10
+        ["CDAAT"] = 100,
+        ["TimeWait"] = 0
     }
     spawn(function()
         local CameraShakerR = require(game.ReplicatedStorage.Util.CameraShaker)
